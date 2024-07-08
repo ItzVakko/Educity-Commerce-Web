@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@100..900&display=swap");
+
+.clothes-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 15px;
+  row-gap: 26px;
+  border-bottom: 3px solid #ebd96b;
+  padding-bottom: 30px;
+  margin-bottom: 25px;
+}
+
+.clothes-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.prev-button,
+.next-button {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  color: #ebd96b;
+  margin: 0 80px;
+}
+
+.prev-button svg,
+.next-button svg {
+  width: 40px;
+  height: 40px;
+}
+
+.prev-button:disabled,
+.next-button:disabled {
+  color: rgb(206, 206, 206);
+}
+
+.pagination-number {
+  font-family: "Noto Sans Georgian", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  width: 35px;
+  height: 35px;
+  border: 1px solid #ebd96b;
+  background-color: transparent;
+  cursor: pointer;
+}

@@ -1,3 +1,6 @@
 .clothes-page-main {
   display: flex;
+  gap: 50px;
+  padding: 0 50px;
+  margin-top: 70px;
 }
