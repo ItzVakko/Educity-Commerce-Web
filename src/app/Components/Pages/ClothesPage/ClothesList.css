@@ -48,3 +48,8 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+.pagination-number.active {
+  color: rgb(172, 172, 172);
+  cursor: auto;
+}

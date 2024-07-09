@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import ClothesCard from "../../GlobalComponents/ClothesCard";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -14,15 +14,18 @@ const ClothesList = () => {
 
   // Page change button function
 
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  };
+  const handlePageChange = useCallback(
+    (page) => {
+      if (page >= 1 && page <= totalPages) {
+        setCurrentPage(page);
+      }
+    },
+    [totalPages]
+  );
 
   // pagination numbers and dots render function
 
-  const renderPageNumbers = () => {
+  const renderPageNumbers = useMemo(() => {
     const items = [];
     const visiblePages = 3;
 
@@ -62,7 +65,7 @@ const ClothesList = () => {
         <button
           key={i}
           onClick={() => handlePageChange(i)}
-          className="pagination-number"
+          className={`pagination-number ${i === currentPage ? "active" : ""}`}
         >
           {i}
         </button>
@@ -83,13 +86,13 @@ const ClothesList = () => {
     }
 
     return items;
-  };
+  }, [currentPage, totalPages, handlePageChange]);
 
-  const cardsData = () => {
+  const cardsData = useMemo(() => {
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     return ClothesInfo.slice(startIndex, endIndex);
-  };
+  }, [currentPage, pageSize]);
 
   const width = "224px";
   const height = "366px";
@@ -100,7 +103,7 @@ const ClothesList = () => {
   return (
     <div>
       <section className="clothes-list">
-        {cardsData().map((item, index) => (
+        {cardsData.map((item, index) => (
           <ClothesCard
             key={index}
             item={item}
@@ -121,7 +124,7 @@ const ClothesList = () => {
           <ArrowBackIosNewIcon />
         </button>
 
-        {renderPageNumbers()}
+        {renderPageNumbers}
 
         <button
           onClick={() => handlePageChange(currentPage + 1)}
