@@ -3,21 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "nodemon nodejs/server.js",
     "build": "next build",
-    "start": "next",
-    "lint": "next lint"
+    "start": "cross-env NODE_ENV=production node nodejs/server.js"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.21",
     "@mui/material": "^5.15.21",
-    "next": "14.2.4",
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.0",
+    "next": "^14.2.4",
+    "node": "^18.20.4",
+    "nodemon": "^3.1.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-router-dom": "^6.24.1",
+    "sharp": "^0.33.4"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",

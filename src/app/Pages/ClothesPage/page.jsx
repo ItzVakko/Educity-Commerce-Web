@@ -1,9 +1,9 @@
 import React from "react";
 import ClothesList from "./ClothesList";
 import Filters from "./Filters";
-import NavBar from "../../GlobalComponents/NavBar";
+import NavBar from "../../Components/GlobalComponents/NavBar";
 
-import "./ClothesPage.css";
+import "./page.css";
 
 const ClothesPage = () => {
   return (
@@ -11,7 +11,6 @@ const ClothesPage = () => {
       <header>
         <NavBar />
       </header>
-
       <main className="clothes-page-main">
         <Filters />
         <ClothesList />

@@ -50,6 +50,7 @@
 }
 
 .pagination-number.active {
-  color: rgb(172, 172, 172);
+  background-color: #ebd96b;
+
   cursor: auto;
 }

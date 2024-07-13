@@ -36,7 +36,7 @@
 
 .navbar-wrapper .HeaderMiddleContainer .HeaderMiddleContainerInput {
   background: rgba(255, 255, 255, 1);
-  width: 289px;
+  width: 450px;
   padding: 12px 17px;
   display: flex;
   align-items: center;
@@ -46,7 +46,7 @@
 }
 
 .HeaderMiddleContainerInput input {
-  width: max-content;
+  width: 100%;
   color: rgba(0, 0, 0, 0.5);
   border: none;
   font-weight: 400;
