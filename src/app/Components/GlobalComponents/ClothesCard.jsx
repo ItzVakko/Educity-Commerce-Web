@@ -4,12 +4,16 @@ import Image from "next/image";
 import MenImg from "../../Assets/Images/MensClothes/beautiful-male-model-holding-hand-hair 1.png";
 
 import "./ClothesCard.css";
+import { useDispatch } from "react-redux";
+import { addItem } from "@/app/Store/Reducers/cartReducer";
 
 const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
   const formattedPrice = useMemo(
     () => `${item.currency} ${item.price}`,
     [item.currency, item.price]
   );
+
+  const dispatch = useDispatch();
 
   return (
     <div
@@ -21,6 +25,9 @@ const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
         src={MenImg}
         alt="ClothesImage"
         style={{ width: imageWidth, height: imageHeight }}
+        onClick={() => {
+          dispatch(addItem(item));
+        }}
       />
 
       <div className="clothes-card-details">

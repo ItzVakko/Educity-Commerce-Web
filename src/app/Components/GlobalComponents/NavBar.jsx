@@ -8,12 +8,15 @@ import Logo from "../../Assets/Images/NavBar/Logo.png";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { useSelector } from "react-redux";
 
 import "./NavBar.css";
 
 export default function Header() {
   const [hidden, setHidden] = useState(true);
   const [searchTransition, setSearchTransition] = useState("translateX(-100%)");
+
+  const itemNumber = useSelector((state) => state.cart.items.length);
 
   useEffect(() => {
     const handleResize = () => {
@@ -77,6 +80,11 @@ export default function Header() {
             <h4 style={{ display: hidden ? "block" : "none" }}>Sign in</h4>
           </div>
           <div>
+            {itemNumber > 0 ? (
+              <span className="cart-items-number">{itemNumber}</span>
+            ) : (
+              <></>
+            )}
             <ShoppingCartOutlinedIcon />
             <h4 style={{ display: hidden ? "block" : "none" }}>Cart</h4>
           </div>

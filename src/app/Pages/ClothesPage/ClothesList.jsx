@@ -131,7 +131,6 @@ const ClothesList = () => {
           />
         ))}
       </section>
-
       <section className="clothes-pagination">
         <button
           onClick={() => handlePageChange(currentPage - 1)}

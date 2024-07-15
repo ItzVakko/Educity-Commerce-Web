@@ -81,6 +81,19 @@
   color: rgba(255, 255, 255, 1);
 }
 
+.cart-items-number {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  width: 18px;
+  height: 18px;
+  border-radius: 50px;
+  font-size: 12px;
+  transform: translate(9px, -9px);
+}
+
 /* Responsive hidden icons styles */
 
 .responsive-icons-wrapper {
@@ -160,5 +173,23 @@
   .HeaderLeftContainer div svg {
     width: 32px;
     height: 32px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navbar-wrapper {
+    padding: 0 10px;
+    gap: 30px;
+  }
+
+  .responsive-burger-icon,
+  .responsive-search-icon {
+    min-width: 22px;
+    min-height: 22px;
+  }
+
+  .HeaderLeftContainer div svg {
+    width: 22px;
+    height: 22px;
   }
 }

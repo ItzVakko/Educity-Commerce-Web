@@ -1,0 +1,82 @@
+h4 {
+  font-size: 19px;
+  color: #232323;
+}
+
+.cart-card-wrapper {
+  display: flex;
+  gap: 40px;
+}
+
+.delete-item-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid black;
+  transform: translate(0px, 0px);
+  background-color: white;
+}
+
+.delete-item-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.cart-card-img {
+  width: 150px;
+  height: 115px;
+  border-radius: 20px;
+}
+
+.cart-card-details-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-properties {
+  font-size: 18px;
+  font-family: "NinoMtavruli", sans-serif;
+  color: #232323;
+}
+
+.product-properties span {
+  font-weight: bold;
+}
+
+.price-and-color-wrapper {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-price {
+  color: #232323;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* responsive styles */
+
+@media screen and (max-width: 500px) {
+  .cart-card-wrapper {
+    gap: 15px;
+  }
+
+  h4 {
+    font-size: 15px;
+    color: #232323;
+  }
+
+  .product-properties {
+    font-size: 14px;
+  }
+}
