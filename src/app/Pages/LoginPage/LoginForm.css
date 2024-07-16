@@ -55,6 +55,11 @@ label {
   color: #ffffff;
   font-size: 22px;
   font-weight: 600;
+  transition: 1s;
+}
+
+.login-page-buttons button:hover {
+  color: rgb(87, 86, 86);
 }
 
 .login-button {
