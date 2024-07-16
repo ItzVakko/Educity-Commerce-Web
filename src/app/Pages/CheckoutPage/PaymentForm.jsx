@@ -47,6 +47,10 @@ const PaymentForm = () => {
             <input type="text" id="cvc" placeholder="CVC" />
           </div>
         </div>
+
+        <div className="pay-button">
+          <button>გადახდა</button>
+        </div>
       </form>
     </aside>
   );

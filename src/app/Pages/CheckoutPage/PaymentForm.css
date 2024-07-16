@@ -58,6 +58,30 @@ h2 {
   gap: 18px;
 }
 
+.pay-button {
+  max-width: 704px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+.pay-button button {
+  width: 252px;
+  height: 50px;
+  background-color: transparent;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  color: #232323;
+  font-size: 20px;
+  font-family: "NinoMtavruli", sans-serif;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.pay-button button:hover {
+  background-color: rgb(245, 244, 244);
+}
+
 /* responsive styles */
 
 @media screen and (max-width: 1100px) {
@@ -75,6 +99,12 @@ h2 {
     font-size: 14px;
     padding: 0 10px;
     padding-top: 5px;
+  }
+
+  .pay-button button {
+    width: 150px;
+    height: 35px;
+    font-size: 14px;
   }
 }
 

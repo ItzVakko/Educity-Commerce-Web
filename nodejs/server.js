@@ -12,10 +12,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/commerce", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect("mongodb://127.0.0.1:27017/commerce")
   .then(() => {
     console.log("Connected to MongoDB");
   })

@@ -1,0 +1,89 @@
+label {
+  font-size: 20px;
+  margin-top: 11px;
+  margin-bottom: 6px;
+  font-weight: 300 !important;
+}
+
+.login-form {
+  max-width: 414px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 72px;
+}
+
+.login-form h1 {
+  font-size: 36px;
+  margin-bottom: 13px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#username-login,
+#password-login {
+  height: 47px;
+  outline: none;
+  border-radius: 10px;
+  border: 0.5px solid #000000;
+  padding: 0 15px;
+  font-size: 16px;
+  color: #232323;
+}
+
+.password-forgot {
+  font-size: 15px;
+  font-weight: 200;
+  cursor: pointer;
+  margin: 10px 0;
+  align-self: flex-end;
+}
+
+.login-page-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.login-page-buttons button {
+  cursor: pointer;
+  height: 55px;
+  padding: 0 20px;
+  background-color: #ebd96b;
+  border: 0.5px solid #ebd96b;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.login-button {
+  max-width: 171px;
+  width: 100%;
+}
+
+.social-networks {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-top: 45px;
+}
+
+.social-networks button {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding-left: 15px;
+  height: 55px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  background-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.1) 0px 4px 4px -1px;
+}
+
+.social-networks span {
+  font-size: 15px;
+  font-weight: 300;
+}

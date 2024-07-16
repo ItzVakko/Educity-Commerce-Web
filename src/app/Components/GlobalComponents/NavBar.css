@@ -62,7 +62,16 @@
   display: flex;
   align-items: center;
   gap: 25px;
+}
+
+.HeaderLeftContainer a {
+  display: flex;
+  gap: 3px;
   align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
 }
 
 .HeaderLeftContainer div {
@@ -71,6 +80,16 @@
   align-items: center;
   flex-direction: column;
   cursor: pointer;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+}
+
+.HeaderLeftContainer a h4 {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: -3%;
+  color: rgba(255, 255, 255, 1);
 }
 
 .HeaderLeftContainer div h4 {
@@ -79,6 +98,10 @@
   line-height: 22px;
   letter-spacing: -3%;
   color: rgba(255, 255, 255, 1);
+}
+
+.HeaderLeftContainer div svg {
+  margin-left: 4px;
 }
 
 .cart-items-number {
@@ -91,7 +114,7 @@
   height: 18px;
   border-radius: 50px;
   font-size: 12px;
-  transform: translate(9px, -9px);
+  transform: translate(11px, -10px);
 }
 
 /* Responsive hidden icons styles */
@@ -170,13 +193,22 @@
     height: 60px;
   }
 
+  .HeaderLeftContainer a svg {
+    width: 32px;
+    height: 32px;
+  }
+
   .HeaderLeftContainer div svg {
     width: 32px;
     height: 32px;
   }
+
+  .cart-items-number {
+    transform: translate(15px, -7px);
+  }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 510px) {
   .navbar-wrapper {
     padding: 0 10px;
     gap: 30px;
@@ -188,8 +220,24 @@
     min-height: 22px;
   }
 
+  .HeaderLeftContainer {
+    gap: 7px;
+  }
+
+  .HeaderLeftContainer a svg {
+    width: 22px;
+    height: 22px;
+  }
+
   .HeaderLeftContainer div svg {
     width: 22px;
     height: 22px;
+  }
+
+  .cart-items-number {
+    width: 15px;
+    height: 15px;
+    font-size: 8px;
+    transform: translate(12px, -7px);
   }
 }

@@ -9,6 +9,7 @@ import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
 import "./NavBar.css";
 
@@ -75,10 +76,10 @@ export default function Header() {
           </div>
         </div>
         <div className="HeaderLeftContainer">
-          <div>
+          <Link href="/login">
             <PersonOutlineRoundedIcon />
             <h4 style={{ display: hidden ? "block" : "none" }}>Sign in</h4>
-          </div>
+          </Link>
           <div>
             {itemNumber > 0 ? (
               <span className="cart-items-number">{itemNumber}</span>
