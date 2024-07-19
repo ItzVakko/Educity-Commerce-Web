@@ -1,35 +1,15 @@
 "use client";
-import React, { useState, useMemo, useCallback, useEffect } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import ClothesCard from "../../Components/GlobalComponents/ClothesCard";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-
 import "./ClothesList.css";
 
-const ClothesList = () => {
+const ClothesList = ({ clothesData }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [clothesData, setClothesData] = useState([]);
   const [pageSize] = useState(12);
   const totalItems = clothesData.length;
   const totalPages = Math.ceil(totalItems / pageSize);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/clothes");
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await res.json();
-        setClothesData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  // Page change button function
 
   const handlePageChange = useCallback(
     (page) => {
@@ -39,8 +19,6 @@ const ClothesList = () => {
     },
     [totalPages]
   );
-
-  // pagination numbers and dots render function
 
   const renderPageNumbers = useMemo(() => {
     const items = [];
@@ -139,9 +117,7 @@ const ClothesList = () => {
         >
           <ArrowBackIosNewIcon />
         </button>
-
         {renderPageNumbers}
-
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}

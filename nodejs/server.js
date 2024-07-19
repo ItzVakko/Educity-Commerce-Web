@@ -27,9 +27,18 @@ app.prepare().then(() => {
 
   server.get("/api/clothes", async (req, res) => {
     try {
-      const clothes = await Clothes.find();
+      const { size, status, category } = req.query;
+      let filter = {};
+
+      if (size) filter.size = { $in: [size] };
+      if (status) filter.status = status;
+      if (category) filter.category = category;
+
+      const clothes = await Clothes.find(filter);
+
       res.json(clothes);
     } catch (err) {
+      console.error("Error fetching data:", err);
       res.status(500).send(err);
     }
   });

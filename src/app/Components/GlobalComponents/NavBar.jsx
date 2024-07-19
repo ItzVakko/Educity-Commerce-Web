@@ -13,7 +13,7 @@ import Link from "next/link";
 
 import "./NavBar.css";
 
-export default function Header() {
+export default function NavBar() {
   const [hidden, setHidden] = useState(true);
   const [searchTransition, setSearchTransition] = useState("translateX(-100%)");
 
@@ -60,10 +60,38 @@ export default function Header() {
         >
           <nav className="navbar">
             <ul className="navbar-buttons-wrapper">
-              <li>Men</li>
-              <li>Women</li>
-              <li>Sale</li>
-              <li>New</li>
+              <li>
+                <Link
+                  href={{ pathname: "/clothes", query: { category: "men" } }}
+                  passHref
+                >
+                  Men
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={{ pathname: "/clothes", query: { category: "women" } }}
+                  passHref
+                >
+                  Women
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={{ pathname: "/clothes", query: { status: "sale" } }}
+                  passHref
+                >
+                  Sale
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={{ pathname: "/clothes", query: { status: "new" } }}
+                  passHref
+                >
+                  New
+                </Link>
+              </li>
             </ul>
           </nav>
           <div className="HeaderMiddleContainerInput">
