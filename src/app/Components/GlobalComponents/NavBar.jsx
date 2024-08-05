@@ -10,12 +10,16 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import "./NavBar.css";
 
 export default function NavBar() {
+  const [keyword, setKeyword] = useState("");
   const [hidden, setHidden] = useState(true);
   const [searchTransition, setSearchTransition] = useState("translateX(-100%)");
+
+  const router = useRouter();
 
   const itemNumber = useSelector((state) => state.cart.items.length);
 
@@ -36,6 +40,19 @@ export default function NavBar() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    if (keyword.trim()) {
+      router.push(`/clothes?search=${encodeURIComponent(keyword)}`);
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSearch(event);
+    }
+  };
 
   return (
     <div className="whole-navbar">
@@ -95,12 +112,19 @@ export default function NavBar() {
             </ul>
           </nav>
           <div className="HeaderMiddleContainerInput">
-            <SearchIcon />
-            <input
-              placeholder="Enter Keywords..."
-              type="text"
-              name="clothes-search"
-            />
+            <form onSubmit={handleSearch}>
+              <button type="submit">
+                <SearchIcon />
+              </button>
+              <input
+                placeholder="Enter Keywords..."
+                type="text"
+                name="clothes-search"
+                onChange={(e) => setKeyword(e.target.value)}
+                value={keyword}
+                onKeyDown={handleKeyDown}
+              />
+            </form>
           </div>
         </div>
         <div className="HeaderLeftContainer">
@@ -121,7 +145,8 @@ export default function NavBar() {
       </div>
 
       {/* responsive search and burgermenu parts. on desktop its hidden! */}
-      <div
+      <form
+        onSubmit={handleSearch}
         className="responsive-search-bar"
         style={{
           display: hidden ? "none" : "flex",
@@ -135,11 +160,14 @@ export default function NavBar() {
           type="text"
           name="clothes-search-responsive"
           placeholder="Enter Keywords..."
+          onChange={(e) => setKeyword(e.target.value)}
+          value={keyword}
+          onKeyDown={handleKeyDown}
         />
         <button onClick={() => setSearchTransition("translateX(-100%)")}>
           <CloseRoundedIcon />
         </button>
-      </div>
+      </form>
     </div>
   );
 }

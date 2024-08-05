@@ -1,11 +1,41 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import "./Filters.css";
 
 const Filters = ({ onFilterChange }) => {
-  const handleFilterClick = (filterType, value) => {
-    onFilterChange({ [filterType]: value });
-  };
+  const [filters, setFilters] = useState({});
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      onFilterChange(filters);
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [filters, onFilterChange]);
+
+  const handleFilterClick = useCallback((filterType, value) => {
+    setFilters((prevFilters) => {
+      const isActive = prevFilters[filterType] === value;
+      const updatedFilters = isActive
+        ? { ...prevFilters, [filterType]: undefined }
+        : { ...prevFilters, [filterType]: value };
+
+      if (updatedFilters[filterType] === undefined) {
+        delete updatedFilters[filterType];
+      }
+
+      return updatedFilters;
+    });
+  }, []);
+
+  const isButtonActive = useCallback(
+    (filterType, value) => {
+      return filters[filterType] === value;
+    },
+    [filters]
+  );
 
   return (
     <aside>
@@ -13,42 +43,19 @@ const Filters = ({ onFilterChange }) => {
       <section className="size-filter-section">
         <h5 className="size-filter-title">Size</h5>
         <div className="size-filter-buttons-wrapper">
-          <button
-            className="size-filter-button"
-            onClick={() => handleFilterClick("size", "XS")}
-          >
-            XS
-          </button>
-          <button
-            className="size-filter-button"
-            onClick={() => handleFilterClick("size", "S")}
-          >
-            S
-          </button>
-          <button
-            className="size-filter-button"
-            onClick={() => handleFilterClick("size", "M")}
-          >
-            M
-          </button>
-          <button
-            className="size-filter-button"
-            onClick={() => handleFilterClick("size", "L")}
-          >
-            L
-          </button>
-          <button
-            className="size-filter-button"
-            onClick={() => handleFilterClick("size", "XL")}
-          >
-            XL
-          </button>
-          <button
-            className="size-filter-button"
-            onClick={() => handleFilterClick("size", "2XL")}
-          >
-            2XL
-          </button>
+          {["XS", "S", "M", "L", "XL", "2XL"].map((size) => (
+            <button
+              key={size}
+              className={
+                isButtonActive("size", size)
+                  ? "size-filter-button clicked-btn"
+                  : "size-filter-button"
+              }
+              onClick={() => handleFilterClick("size", size)}
+            >
+              {size}
+            </button>
+          ))}
         </div>
       </section>
       <section className="category-filter-section">

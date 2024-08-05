@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 const port = 3000;
 
-const Clothes = require("./clothes.js"); // Ensure you have the Clothes model defined
+const Clothes = require("./clothes.js");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -27,12 +27,26 @@ app.prepare().then(() => {
 
   server.get("/api/clothes", async (req, res) => {
     try {
-      const { size, status, category } = req.query;
+      const { size, status, category, search } = req.query;
       let filter = {};
 
+      // Filtering by size status and category
       if (size) filter.size = { $in: [size] };
       if (status) filter.status = status;
       if (category) filter.category = category;
+
+      // Adding search filter
+      if (search) {
+        filter.$or = [
+          { brand: new RegExp(`\\b${search}\\b`, "i") },
+          { model: new RegExp(`\\b${search}\\b`, "i") },
+          { name: new RegExp(`\\b${search}\\b`, "i") },
+          { description: new RegExp(`\\b${search}\\b`, "i") },
+          { size: new RegExp(`\\b${search}\\b`, "i") },
+          { category: new RegExp(`\\b${search}\\b`, "i") },
+          { status: new RegExp(`\\b${search}\\b`, "i") },
+        ];
+      }
 
       const clothes = await Clothes.find(filter);
 
@@ -49,6 +63,6 @@ app.prepare().then(() => {
 
   server.listen(port, (err) => {
     if (err) throw err;
-    console.log("Listening to port " + port);
+    console.log("Listening on port " + port);
   });
 });

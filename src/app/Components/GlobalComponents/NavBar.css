@@ -38,7 +38,7 @@
   color: white;
 }
 
-.navbar-wrapper .HeaderMiddleContainer .HeaderMiddleContainerInput {
+.navbar-wrapper .HeaderMiddleContainer .HeaderMiddleContainerInput form {
   background: rgba(255, 255, 255, 1);
   width: 450px;
   padding: 12px 17px;
@@ -49,7 +49,7 @@
   border-radius: 50px;
 }
 
-.HeaderMiddleContainerInput input {
+.HeaderMiddleContainerInput form input {
   width: 100%;
   color: rgba(0, 0, 0, 0.5);
   border: none;
@@ -58,7 +58,16 @@
   outline: none;
 }
 
-.HeaderMiddleContainerInput svg {
+.HeaderMiddleContainerInput form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+}
+
+.HeaderMiddleContainerInput form button svg {
   color: rgba(0, 0, 0, 0.5);
 }
 

@@ -39,9 +39,12 @@ const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
           <p className="clothes-card-description">{item.model}</p>
 
           <div className="clothes-card-sizes">
-            {item.size.map((item, index) => (
-              <h5 key={index}>{item}</h5>
-            ))}
+            <h5>XS</h5>
+            <h5>S</h5>
+            <h5>M</h5>
+            <h5>L</h5>
+            <h5>XL</h5>
+            <h5>2XL</h5>
           </div>
         </div>
       </div>

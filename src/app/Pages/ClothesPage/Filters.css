@@ -29,6 +29,10 @@
   cursor: pointer;
 }
 
+.clicked-btn {
+  border: 1px solid #ebd96b;
+}
+
 .category-filter-section {
   max-width: 265px;
   display: flex;
