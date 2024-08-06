@@ -55,9 +55,9 @@ const Filters = ({ onFilterChange }) => {
 
   return (
     <aside>
-      <h4 className="filters-title">Filters</h4>
+      <h4 className="filters-title">გაფილტვრა</h4>
       <section className="size-filter-section">
-        <h5 className="size-filter-title">Size</h5>
+        <h5 className="size-filter-title">ზომები</h5>
         <div className="size-filter-buttons-wrapper">
           {["XS", "S", "M", "L", "XL", "2XL"].map((size) => (
             <button

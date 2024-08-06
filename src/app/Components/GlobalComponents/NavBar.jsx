@@ -82,7 +82,7 @@ export default function NavBar() {
                   href={{ pathname: "/clothes", query: { category: "men" } }}
                   passHref
                 >
-                  Men
+                  კაცი
                 </Link>
               </li>
               <li>
@@ -90,7 +90,7 @@ export default function NavBar() {
                   href={{ pathname: "/clothes", query: { category: "women" } }}
                   passHref
                 >
-                  Women
+                  ქალი
                 </Link>
               </li>
               <li>
@@ -98,7 +98,7 @@ export default function NavBar() {
                   href={{ pathname: "/clothes", query: { status: "sale" } }}
                   passHref
                 >
-                  Sale
+                  ფასდაკლება
                 </Link>
               </li>
               <li>
@@ -106,7 +106,7 @@ export default function NavBar() {
                   href={{ pathname: "/clothes", query: { status: "new" } }}
                   passHref
                 >
-                  New
+                  ახალი
                 </Link>
               </li>
             </ul>
@@ -117,7 +117,7 @@ export default function NavBar() {
                 <SearchIcon />
               </button>
               <input
-                placeholder="Enter Keywords..."
+                placeholder="სიტყვებით ძებნა..."
                 type="text"
                 name="clothes-search"
                 onChange={(e) => setKeyword(e.target.value)}
@@ -130,7 +130,7 @@ export default function NavBar() {
         <div className="HeaderLeftContainer">
           <Link href="/login">
             <PersonOutlineRoundedIcon />
-            <h4 style={{ display: hidden ? "block" : "none" }}>Sign in</h4>
+            <h4 style={{ display: hidden ? "block" : "none" }}>ავტორიზაცია</h4>
           </Link>
           <div>
             {itemNumber > 0 ? (
@@ -139,7 +139,7 @@ export default function NavBar() {
               <></>
             )}
             <ShoppingCartOutlinedIcon />
-            <h4 style={{ display: hidden ? "block" : "none" }}>Cart</h4>
+            <h4 style={{ display: hidden ? "block" : "none" }}>კალათა</h4>
           </div>
         </div>
       </div>
@@ -159,7 +159,7 @@ export default function NavBar() {
         <input
           type="text"
           name="clothes-search-responsive"
-          placeholder="Enter Keywords..."
+          placeholder="სიტყვებით ძებნა..."
           onChange={(e) => setKeyword(e.target.value)}
           value={keyword}
           onKeyDown={handleKeyDown}

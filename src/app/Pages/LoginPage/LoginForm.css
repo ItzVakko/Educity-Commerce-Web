@@ -14,6 +14,7 @@ label {
 }
 
 .login-form h1 {
+  font-family: "NinoMtavruli", sans-serif;
   font-size: 36px;
   margin-bottom: 13px;
   text-align: center;
@@ -53,7 +54,7 @@ label {
   border: 0.5px solid #ebd96b;
   border-radius: 10px;
   color: #ffffff;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   transition: 1s;
 }

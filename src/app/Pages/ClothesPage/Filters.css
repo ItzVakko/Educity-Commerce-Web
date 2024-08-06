@@ -1,7 +1,8 @@
 .filters-title {
   font-size: 16px;
   letter-spacing: 1.2px;
-  font-weight: 400;
+  font-weight: 700;
+  font-family: "NinoMtavruli", sans-serif;
 }
 
 .size-filter-section {
@@ -11,7 +12,8 @@
 .size-filter-title {
   font-size: 14px;
   letter-spacing: 1.2px;
-  font-weight: 400;
+  font-weight: 500;
+  font-family: "NinoMtavruli", sans-serif;
 }
 
 .size-filter-buttons-wrapper {
