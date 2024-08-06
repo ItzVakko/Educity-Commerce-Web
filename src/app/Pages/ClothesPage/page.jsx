@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import ClothesList from "./ClothesList";
 import Filters from "./Filters";
 import NavBar from "../../Components/GlobalComponents/NavBar";
@@ -11,7 +11,6 @@ import "./page.css";
 const ClothesPage = () => {
   const [clothesData, setClothesData] = useState([]);
   const [filters, setFilters] = useState({});
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const fetchData = useCallback(async () => {
