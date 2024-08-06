@@ -11,7 +11,6 @@ import "./page.css";
 const ClothesPage = () => {
   const [clothesData, setClothesData] = useState([]);
   const [filters, setFilters] = useState({});
-
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -40,10 +39,7 @@ const ClothesPage = () => {
 
   const handleFilterChange = (newFilters) => {
     const updatedFilters = { ...filters, ...newFilters };
-    const query = new URLSearchParams(updatedFilters).toString();
-
     setFilters(updatedFilters);
-    router.push(`/clothes?${query}`);
   };
 
   return (

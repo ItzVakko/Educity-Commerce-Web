@@ -3,7 +3,7 @@
 .clothes-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   gap: 15px;
   row-gap: 26px;
   border-bottom: 3px solid #ebd96b;

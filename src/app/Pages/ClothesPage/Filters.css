@@ -61,3 +61,17 @@
 .category-filter-button button * {
   font-size: 22px;
 }
+
+@media screen and (max-width: 1100px) {
+  .category-filter-section {
+    max-width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .category-filter-section {
+    flex-direction: column;
+  }
+}

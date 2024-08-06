@@ -5,9 +5,9 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "./ClothesList.css";
 
-const ClothesList = ({ clothesData }) => {
+const ClothesList = React.memo(({ clothesData }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(12);
+  const pageSize = 12;
   const totalItems = clothesData.length;
   const totalPages = Math.ceil(totalItems / pageSize);
 
@@ -91,7 +91,6 @@ const ClothesList = ({ clothesData }) => {
 
   const width = "224px";
   const height = "366px";
-
   const imageWidth = "224px";
   const imageHeight = "315px";
 
@@ -106,6 +105,7 @@ const ClothesList = ({ clothesData }) => {
             height={height}
             imageWidth={imageWidth}
             imageHeight={imageHeight}
+            className="clothes-card"
           />
         ))}
       </section>
@@ -128,6 +128,6 @@ const ClothesList = ({ clothesData }) => {
       </section>
     </div>
   );
-};
+});
 
 export default ClothesList;

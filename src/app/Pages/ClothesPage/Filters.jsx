@@ -1,34 +1,50 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import "./Filters.css";
 
 const Filters = ({ onFilterChange }) => {
-  const [filters, setFilters] = useState({});
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [filters, setFilters] = useState(() => {
+    const params = Object.fromEntries(searchParams.entries());
+    return params;
+  });
+
+  const debounceTimeout = useRef(null);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      onFilterChange(filters);
-    }, 300);
+    const params = Object.fromEntries(searchParams.entries());
+    setFilters(params);
+  }, [searchParams]);
 
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [filters, onFilterChange]);
+  const handleFilterClick = useCallback(
+    (filterType, value) => {
+      setFilters((prevFilters) => {
+        const isActive = prevFilters[filterType] === value;
+        const updatedFilters = isActive
+          ? { ...prevFilters, [filterType]: undefined }
+          : { ...prevFilters, [filterType]: value };
 
-  const handleFilterClick = useCallback((filterType, value) => {
-    setFilters((prevFilters) => {
-      const isActive = prevFilters[filterType] === value;
-      const updatedFilters = isActive
-        ? { ...prevFilters, [filterType]: undefined }
-        : { ...prevFilters, [filterType]: value };
+        if (updatedFilters[filterType] === undefined) {
+          delete updatedFilters[filterType];
+        }
 
-      if (updatedFilters[filterType] === undefined) {
-        delete updatedFilters[filterType];
-      }
+        if (debounceTimeout.current) {
+          clearTimeout(debounceTimeout.current);
+        }
 
-      return updatedFilters;
-    });
-  }, []);
+        debounceTimeout.current = setTimeout(() => {
+          const query = new URLSearchParams(updatedFilters).toString();
+          router.push(`/clothes?${query}`);
+          onFilterChange(updatedFilters);
+        }, 300);
+
+        return updatedFilters;
+      });
+    },
+    [router, onFilterChange]
+  );
 
   const isButtonActive = useCallback(
     (filterType, value) => {
