@@ -2,9 +2,9 @@
 
 import React from "react";
 import CartCard from "@/app/Components/GlobalComponents/CartCard";
+import { useSelector } from "react-redux";
 
 import "./CheckoutItems.css";
-import { useSelector } from "react-redux";
 
 const CheckoutItems = () => {
   const product = useSelector((state) => state.cart.items);

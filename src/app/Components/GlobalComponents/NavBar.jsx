@@ -10,6 +10,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import CartMenu from "@/app/Pages/ClothesPage/CartMenu";
 import { useRouter } from "next/navigation";
 
 import "./NavBar.css";
@@ -18,6 +19,7 @@ export default function NavBar() {
   const [keyword, setKeyword] = useState("");
   const [hidden, setHidden] = useState(true);
   const [searchTransition, setSearchTransition] = useState("translateX(-100%)");
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const router = useRouter();
 
@@ -55,119 +57,129 @@ export default function NavBar() {
   };
 
   return (
-    <div className="whole-navbar">
-      <div className="navbar-wrapper">
-        <div
-          className="responsive-icons-wrapper"
-          style={{ display: hidden ? "none" : "flex" }}
+    <>
+      <div className="whole-navbar">
+        <div className="navbar-wrapper">
+          <div
+            className="responsive-icons-wrapper"
+            style={{ display: hidden ? "none" : "flex" }}
+          >
+            <button>
+              <MenuRoundedIcon className="responsive-burger-icon" />
+            </button>
+            <button onClick={() => setSearchTransition("translateX(0)")}>
+              <SearchIcon className="responsive-search-icon" />
+            </button>
+          </div>
+          <div className="HeaderLogoContainer">
+            <Image src={Logo} alt="Logo" />
+          </div>
+          <div
+            className="HeaderMiddleContainer"
+            style={{ display: hidden ? "flex" : "none" }}
+          >
+            <nav className="navbar">
+              <ul className="navbar-buttons-wrapper">
+                <li>
+                  <Link
+                    href={{ pathname: "/clothes", query: { category: "men" } }}
+                    passHref
+                  >
+                    კაცი
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={{
+                      pathname: "/clothes",
+                      query: { category: "women" },
+                    }}
+                    passHref
+                  >
+                    ქალი
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={{ pathname: "/clothes", query: { status: "sale" } }}
+                    passHref
+                  >
+                    ფასდაკლება
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={{ pathname: "/clothes", query: { status: "new" } }}
+                    passHref
+                  >
+                    ახალი
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <div className="HeaderMiddleContainerInput">
+              <form onSubmit={handleSearch}>
+                <button type="submit">
+                  <SearchIcon />
+                </button>
+                <input
+                  placeholder="სიტყვებით ძებნა..."
+                  type="text"
+                  name="clothes-search"
+                  onChange={(e) => setKeyword(e.target.value)}
+                  value={keyword}
+                  onKeyDown={handleKeyDown}
+                />
+              </form>
+            </div>
+          </div>
+          <div className="HeaderLeftContainer">
+            <Link href="/login">
+              <PersonOutlineRoundedIcon />
+              <h4 style={{ display: hidden ? "block" : "none" }}>
+                ავტორიზაცია
+              </h4>
+            </Link>
+            <div onClick={() => setIsCartOpen(true)}>
+              {itemNumber > 0 ? (
+                <span className="cart-items-number">{itemNumber}</span>
+              ) : (
+                <></>
+              )}
+              <ShoppingCartOutlinedIcon />
+              <h4 style={{ display: hidden ? "block" : "none" }}>კალათა</h4>
+            </div>
+          </div>
+        </div>
+
+        {/* responsive search and burgermenu parts. on desktop its hidden! */}
+        <form
+          onSubmit={handleSearch}
+          className="responsive-search-bar"
+          style={{
+            display: hidden ? "none" : "flex",
+            transform: searchTransition,
+          }}
         >
           <button>
-            <MenuRoundedIcon className="responsive-burger-icon" />
+            <SearchIcon />
           </button>
-          <button onClick={() => setSearchTransition("translateX(0)")}>
-            <SearchIcon className="responsive-search-icon" />
+          <input
+            type="text"
+            name="clothes-search-responsive"
+            placeholder="სიტყვებით ძებნა..."
+            onChange={(e) => setKeyword(e.target.value)}
+            value={keyword}
+            onKeyDown={handleKeyDown}
+          />
+          <button onClick={() => setSearchTransition("translateX(-100%)")}>
+            <CloseRoundedIcon />
           </button>
-        </div>
-        <div className="HeaderLogoContainer">
-          <Image src={Logo} alt="Logo" />
-        </div>
-        <div
-          className="HeaderMiddleContainer"
-          style={{ display: hidden ? "flex" : "none" }}
-        >
-          <nav className="navbar">
-            <ul className="navbar-buttons-wrapper">
-              <li>
-                <Link
-                  href={{ pathname: "/clothes", query: { category: "men" } }}
-                  passHref
-                >
-                  კაცი
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={{ pathname: "/clothes", query: { category: "women" } }}
-                  passHref
-                >
-                  ქალი
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={{ pathname: "/clothes", query: { status: "sale" } }}
-                  passHref
-                >
-                  ფასდაკლება
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={{ pathname: "/clothes", query: { status: "new" } }}
-                  passHref
-                >
-                  ახალი
-                </Link>
-              </li>
-            </ul>
-          </nav>
-          <div className="HeaderMiddleContainerInput">
-            <form onSubmit={handleSearch}>
-              <button type="submit">
-                <SearchIcon />
-              </button>
-              <input
-                placeholder="სიტყვებით ძებნა..."
-                type="text"
-                name="clothes-search"
-                onChange={(e) => setKeyword(e.target.value)}
-                value={keyword}
-                onKeyDown={handleKeyDown}
-              />
-            </form>
-          </div>
-        </div>
-        <div className="HeaderLeftContainer">
-          <Link href="/login">
-            <PersonOutlineRoundedIcon />
-            <h4 style={{ display: hidden ? "block" : "none" }}>ავტორიზაცია</h4>
-          </Link>
-          <div>
-            {itemNumber > 0 ? (
-              <span className="cart-items-number">{itemNumber}</span>
-            ) : (
-              <></>
-            )}
-            <ShoppingCartOutlinedIcon />
-            <h4 style={{ display: hidden ? "block" : "none" }}>კალათა</h4>
-          </div>
-        </div>
+        </form>
       </div>
 
-      {/* responsive search and burgermenu parts. on desktop its hidden! */}
-      <form
-        onSubmit={handleSearch}
-        className="responsive-search-bar"
-        style={{
-          display: hidden ? "none" : "flex",
-          transform: searchTransition,
-        }}
-      >
-        <button>
-          <SearchIcon />
-        </button>
-        <input
-          type="text"
-          name="clothes-search-responsive"
-          placeholder="სიტყვებით ძებნა..."
-          onChange={(e) => setKeyword(e.target.value)}
-          value={keyword}
-          onKeyDown={handleKeyDown}
-        />
-        <button onClick={() => setSearchTransition("translateX(-100%)")}>
-          <CloseRoundedIcon />
-        </button>
-      </form>
-    </div>
+      {/* Cart menu slide default hidden! */}
+      <CartMenu isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
+    </>
   );
 }

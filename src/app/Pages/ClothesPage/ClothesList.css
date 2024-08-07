@@ -57,4 +57,25 @@
   .clothes-list {
     justify-content: center;
   }
+
+  .prev-button,
+  .next-button {
+    margin: 0 40px;
+  }
+
+  .prev-button svg,
+  .next-button svg {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .prev-button {
+    margin-right: 20px;
+  }
+
+  .next-button {
+    margin-left: 20px;
+  }
 }
