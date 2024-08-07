@@ -27,7 +27,7 @@ const CartCard = ({ item, index }) => {
       <Image src={MenImg} alt="product-image" className="cart-card-img" />
 
       <div className="cart-card-details-wrapper">
-        <h4>{item.brand}</h4>
+        <h4>{item.model}</h4>
 
         <p className="product-properties">
           ზომა: <span>{item.size}</span>

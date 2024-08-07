@@ -1,6 +1,7 @@
 import React from "react";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import CartMenuCard from "@/app/Components/GlobalComponents/CartMenuCard";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useSelector } from "react-redux";
 
 import "./CartMenu.css";
@@ -20,7 +21,10 @@ const CartMenu = ({ isCartOpen, setIsCartOpen }) => {
       }`}
     >
       <div className="cart-menu-title-wrapper">
-        <h2>თქვენი კალათა</h2>
+        <h2>
+          <ShoppingCartOutlinedIcon />
+          თქვენი კალათა
+        </h2>
         <button onClick={() => setIsCartOpen(false)}>
           <CloseRoundedIcon />
         </button>

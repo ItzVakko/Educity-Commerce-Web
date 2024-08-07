@@ -1,2 +1,121 @@
 .cart-menu-card-wrapper {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+  align-items: stretch;
+}
+
+.cart-menu-card-wrapper img {
+  width: 90px;
+  height: 100px;
+}
+
+.cart-menu-card-description {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.cart-menu-card-model {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.cart-menu-card-size {
+  font-size: 12px;
+  margin-top: 5px;
+  color: gray;
+}
+
+.cart-menu-card-input-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-menu-card-input-price div {
+  display: flex;
+  align-items: center;
+}
+
+.cart-menu-card-input-price span {
+  font-size: 11px;
+  color: gray;
+  margin: 0 5px;
+}
+
+.input-number-container {
+  padding: 4px 4px;
+  display: inline-block;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+.input-number-flex {
+  display: flex;
+  align-items: center;
+  gap: 0.175rem;
+}
+
+.input-number-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  color: #1a202c;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.input-number-button:hover {
+  background-color: #f7fafc;
+}
+
+.input-number-button:focus {
+  outline: none;
+  background-color: #f7fafc;
+}
+
+.input-number-button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.input-number-icon {
+  flex-shrink: 0;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.input-number-input {
+  padding: 0;
+  width: 1.5rem;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  color: #1a202c;
+  appearance: textfield;
+}
+
+.input-number-input::-webkit-outer-spin-button,
+.input-number-input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.remove-icon-cart {
+  width: 20px !important;
+  height: 20px !important;
+  fill: gray !important;
+  cursor: pointer;
 }
