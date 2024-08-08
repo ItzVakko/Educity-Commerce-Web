@@ -10,10 +10,18 @@ import Link from "next/link";
 const CartMenu = ({ isCartOpen, setIsCartOpen }) => {
   const [isEmpty, setIsEmpty] = useState(true);
   const product = useSelector((state) => state.cart.items);
-  const priceSum = useSelector((state) =>
-    state.cart.items.reduce((total, curlVal) => {
-      return total + curlVal.price;
-    }, 0)
+
+  const totalPrice = useSelector((state) =>
+    state.cart.items.reduce((sum, item) => sum + item.qty * item.price, 0)
+  );
+
+  const formattedTotalPrice = totalPrice.toLocaleString("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+
+  const totalItems = useSelector((state) =>
+    state.cart.items.reduce((total, item) => total + item.qty, 0)
   );
 
   useEffect(() => {
@@ -57,14 +65,14 @@ const CartMenu = ({ isCartOpen, setIsCartOpen }) => {
         <div className="cart-menu-line"></div>
 
         <p className="cart-menu-cards-amount">
-          არჩეული პროდუქტებია: <span>{product.length}</span>
+          არჩეული პროდუქტებია: <span>{totalItems}</span>
         </p>
         <div className="cart-menu-main-line"></div>
 
         <h2 className="cart-menu-cards-priceSum cart-menu-h2">
           გადასახადი:
           <div>
-            <s>100</s> <span>{priceSum} ₾</span>
+            <s>100</s> <span>{formattedTotalPrice} ₾</span>
           </div>
         </h2>
         <Link href="/checkout">

@@ -9,11 +9,15 @@ import "./CheckoutItems.css";
 const CheckoutItems = () => {
   const [isEmpty, setIsEmpty] = useState(false);
   const product = useSelector((state) => state.cart.items);
-  const priceSum = useSelector((state) =>
-    state.cart.items.reduce((total, curlVal) => {
-      return total + curlVal.price;
-    }, 0)
+
+  const totalPrice = useSelector((state) =>
+    state.cart.items.reduce((sum, item) => sum + item.qty * item.price, 0)
   );
+
+  const formattedTotalPrice = totalPrice.toLocaleString("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
 
   useEffect(() => {
     if (product.length == 0) {
@@ -49,7 +53,7 @@ const CheckoutItems = () => {
 
       <div className="prices-wrapper">
         <p>ჯამში:</p>
-        <span>{priceSum}₾</span>
+        <span>{formattedTotalPrice}₾</span>
       </div>
     </section>
   );

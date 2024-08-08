@@ -23,7 +23,9 @@ export default function NavBar() {
 
   const router = useRouter();
 
-  const itemNumber = useSelector((state) => state.cart.items.length);
+  const itemNumber = useSelector((state) =>
+    state.cart.items.reduce((total, item) => total + item.qty, 0)
+  );
 
   useEffect(() => {
     const handleResize = () => {

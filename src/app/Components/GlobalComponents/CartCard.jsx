@@ -2,15 +2,20 @@ import React, { useMemo } from "react";
 import Image from "next/image";
 import MenImg from "../../Assets/Images/MensClothes/beautiful-male-model-holding-hand-hair 1.png";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { delItem } from "@/app/Store/Reducers/cartReducer";
 
 import "./CartCard.css";
 
-const CartCard = ({ item, index }) => {
+const CartCard = ({ item }) => {
   const formattedPrice = useMemo(
     () => `${item.price}${item.currency}`,
     [item.currency, item.price]
+  );
+
+  const qty = useSelector(
+    (state) =>
+      state.cart.items.find((cartItem) => cartItem._id === item._id)?.qty || 0
   );
 
   const dispatch = useDispatch();
@@ -19,7 +24,7 @@ const CartCard = ({ item, index }) => {
     <div className="cart-card-wrapper">
       <button
         className="delete-item-button"
-        onClick={() => dispatch(delItem({ index }))}
+        onClick={() => dispatch(delItem({ _id: item._id }))}
       >
         <CloseRoundedIcon />
       </button>
@@ -38,7 +43,9 @@ const CartCard = ({ item, index }) => {
             ფერი: <span> შავი</span>
           </p>
 
-          <span className="product-price">{formattedPrice}</span>
+          <span className="product-price">
+            {qty} x {formattedPrice}
+          </span>
         </div>
       </div>
     </div>

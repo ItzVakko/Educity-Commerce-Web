@@ -1,31 +1,38 @@
-import React, { useState, useMemo } from "react";
+import React, { useCallback } from "react";
 import MenImg from "../../Assets/Images/MensClothes/beautiful-male-model-holding-hand-hair 1.png";
 import Image from "next/image";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { useDispatch } from "react-redux";
-import { delItem } from "@/app/Store/Reducers/cartReducer";
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItem,
+  updateItemQuantity,
+  delItem,
+} from "@/app/Store/Reducers/cartReducer";
 import "./CartMenuCard.css";
 
-const CartMenuCard = ({ item, index }) => {
-  const [value, setValue] = useState(1);
+const CartMenuCard = ({ item }) => {
+  const dispatch = useDispatch();
 
-  const increment = () => {
-    setValue(value + 1);
-  };
-
-  const decrement = () => {
-    if (value > 1) {
-      setValue(value - 1);
-    }
-  };
-
-  const formattedPrice = useMemo(
-    () => `${item.price} ${item.currency}`,
-    [item.currency, item.price]
+  const qty = useSelector(
+    (state) =>
+      state.cart.items.find((cartItem) => cartItem._id === item._id)?.qty || 0
   );
 
-  const dispatch = useDispatch();
+  const increment = useCallback(() => {
+    dispatch(addItem({ ...item, qty: 1 }));
+  }, [dispatch, item]);
+
+  const decrement = useCallback(() => {
+    if (qty > 1) {
+      dispatch(updateItemQuantity({ _id: item._id, qty: qty - 1 }));
+    }
+  }, [dispatch, item._id, qty]);
+
+  const handleRemove = useCallback(() => {
+    dispatch(delItem({ _id: item._id }));
+  }, [dispatch, item._id]);
+
+  const formattedPrice = `${item.price} ${item.currency}`;
 
   return (
     <div className="cart-menu-card-wrapper">
@@ -33,7 +40,7 @@ const CartMenuCard = ({ item, index }) => {
       <div className="cart-menu-card-description">
         <div>
           <h3 className="cart-menu-card-model">{item.model}</h3>
-          <p className="cart-menu-card-size">ზომა: {item.size}</p>
+          <p className="cart-menu-card-size">Size: {item.size}</p>
         </div>
 
         <div className="cart-menu-card-input-price">
@@ -64,7 +71,7 @@ const CartMenuCard = ({ item, index }) => {
                 <input
                   className="input-number-input"
                   type="number"
-                  value={value}
+                  value={qty}
                   readOnly
                   aria-roledescription="Number field"
                 />
@@ -96,7 +103,7 @@ const CartMenuCard = ({ item, index }) => {
             {formattedPrice}
           </div>
           <DeleteForeverIcon
-            onClick={() => dispatch(delItem({ index }))}
+            onClick={handleRemove}
             className="remove-icon-cart"
           />
         </div>
