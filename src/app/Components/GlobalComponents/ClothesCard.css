@@ -17,9 +17,12 @@
 }
 
 .clothes-card-title {
-  font-size: 13px;
+  width: 150px;
+  font-size: 14px;
   font-weight: 400;
-  opacity: 0.66;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .clothes-card-price {
@@ -27,7 +30,12 @@
 }
 
 .clothes-card-description {
-  font-size: 14px;
+  width: 100px;
+  font-size: 13px;
+  opacity: 0.66;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .clothes-card-sizes {

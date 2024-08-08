@@ -10,7 +10,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import CartMenu from "@/app/Pages/ClothesPage/CartMenu";
+import CartMenu from "./CartMenu";
 import { useRouter } from "next/navigation";
 
 import "./NavBar.css";

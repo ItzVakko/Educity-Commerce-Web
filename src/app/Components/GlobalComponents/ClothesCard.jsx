@@ -32,11 +32,11 @@ const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
 
       <div className="clothes-card-details">
         <div className="clothes-card-details-flex">
-          <h5 className="clothes-card-title">{item.brand}</h5>
+          <h5 className="clothes-card-title">{item.model}</h5>
           <p className="clothes-card-price">{formattedPrice}</p>
         </div>
         <div className="clothes-card-details-flex">
-          <p className="clothes-card-description">{item.model}</p>
+          <p className="clothes-card-description">{item.brand}</p>
 
           <div className="clothes-card-sizes">
             <h5>XS</h5>

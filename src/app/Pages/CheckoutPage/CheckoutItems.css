@@ -60,6 +60,12 @@ h2 {
   font-weight: bold;
 }
 
+.no-selected-product {
+  font-size: 18px;
+  font-family: "NinoMtavruli", sans-serif;
+  opacity: 0.6;
+}
+
 /* responsive styles */
 
 @media screen and (max-width: 750px) {
