@@ -31,6 +31,22 @@
   color: gray;
 }
 
+.cart-menu-card-size span {
+  font-weight: bold;
+  color: black;
+}
+
+.cart-menu-card-color {
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: gray;
+}
+
+.cart-menu-card-color span {
+  font-weight: bold;
+  color: black;
+}
+
 .cart-menu-card-input-price {
   display: flex;
   align-items: center;

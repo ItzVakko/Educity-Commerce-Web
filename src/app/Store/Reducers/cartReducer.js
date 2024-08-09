@@ -10,22 +10,31 @@ const cartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const newItem = action.payload;
-      const existingItem = state.items.find((item) => item._id === newItem._id);
+      const existingItem = state.items.find(
+        (item) =>
+          item._id === newItem._id &&
+          item.selectedSize === newItem.selectedSize &&
+          item.selectedColor === newItem.selectedColor
+      );
 
       if (existingItem) {
-        existingItem.qty += 1;
+        existingItem.qty += newItem.qty;
         existingItem.sum = existingItem.price * existingItem.qty;
       } else {
         state.items.push({
           ...newItem,
-          qty: 1,
-          sum: newItem.price,
+          sum: newItem.price * newItem.qty,
         });
       }
     },
     updateItemQuantity: (state, action) => {
-      const { _id, qty } = action.payload;
-      const item = state.items.find((item) => item._id === _id);
+      const { _id, selectedSize, selectedColor, qty } = action.payload;
+      const item = state.items.find(
+        (item) =>
+          item._id === _id &&
+          item.selectedSize === selectedSize &&
+          item.selectedColor === selectedColor
+      );
 
       if (item) {
         item.qty = qty;
@@ -33,8 +42,13 @@ const cartSlice = createSlice({
       }
     },
     delItem: (state, action) => {
-      const itemId = action.payload._id;
-      state.items = state.items.filter((item) => item._id !== itemId);
+      const { _id, selectedSize, selectedColor } = action.payload;
+      state.items = state.items.filter(
+        (item) =>
+          item._id !== _id ||
+          item.selectedSize !== selectedSize ||
+          item.selectedColor !== selectedColor
+      );
     },
   },
 });

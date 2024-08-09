@@ -1,16 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import { useDispatch } from "react-redux";
+import { addItem } from "@/app/Store/Reducers/cartReducer";
 
 import "./ClothesDetailsChoose.css";
 
 const ClothesDetailsChoose = ({ product }) => {
   const [mainImage, setMainImage] = useState(product.mainImage.image);
+  const [selectedColor, setSelectedColor] = useState(product.mainImage.color);
+  const [selectedSize, setSelectedSize] = useState(product.size[0] || "");
+  const [quantity, setQuantity] = useState(1);
 
-  const handleColorClick = (imageUrl) => {
+  useEffect(() => {
+    setMainImage(product.mainImage.image);
+    setSelectedColor(product.mainImage.color);
+  }, [product]);
+
+  const handleColorClick = (color, imageUrl) => {
+    setSelectedColor(color);
     setMainImage(imageUrl);
+  };
+
+  const handleSizeClick = (size) => {
+    setSelectedSize(size);
+  };
+
+  const handleQuantityChange = (change) => {
+    setQuantity((prev) => Math.max(1, prev + change));
+  };
+
+  const dispatch = useDispatch();
+
+  const handleAddToBasket = () => {
+    const item = {
+      ...product,
+      selectedColor,
+      selectedSize,
+      qty: quantity,
+    };
+    dispatch(addItem(item));
   };
 
   return (
@@ -32,15 +63,27 @@ const ClothesDetailsChoose = ({ product }) => {
           <h1 className="clothes-details-model">{product.model}</h1>
           <h2 className="clothes-details-brand">{product.brand}</h2>
           <p className="clothes-details-price">
-            ფასი <span>199 ₾</span>
+            ფასი <span>{product.price} ₾</span>
           </p>
 
           <p className="clothes-details-color">ფერი</p>
           <div className="clothes-details-color-options">
             <div
               className="color-option"
-              onClick={() => handleColorClick(product.mainImage.image)}
-              style={{ cursor: "pointer" }}
+              onClick={() =>
+                handleColorClick(
+                  product.mainImage.color,
+                  product.mainImage.image
+                )
+              }
+              style={{
+                cursor: "pointer",
+                borderRadius: "5px",
+                border:
+                  selectedColor === product.mainImage.color
+                    ? "2px solid #ebd96b"
+                    : "none",
+              }}
             >
               <Image
                 width={80}
@@ -53,8 +96,17 @@ const ClothesDetailsChoose = ({ product }) => {
               <div
                 key={colorImage.color}
                 className="color-option"
-                onClick={() => handleColorClick(colorImage.image)}
-                style={{ cursor: "pointer" }}
+                onClick={() =>
+                  handleColorClick(colorImage.color, colorImage.image)
+                }
+                style={{
+                  cursor: "pointer",
+                  borderRadius: "5px",
+                  border:
+                    selectedColor === colorImage.color
+                      ? "2px solid #ebd96b"
+                      : "none",
+                }}
               >
                 <Image
                   width={80}
@@ -69,7 +121,15 @@ const ClothesDetailsChoose = ({ product }) => {
           <p className="clothes-details-size">ზომა</p>
           <div className="clothes-details-sizes-wrapper">
             {product.size.map((size, index) => (
-              <button className="clothes-details-size-button" key={index}>
+              <button
+                className="clothes-details-size-button"
+                key={index}
+                onClick={() => handleSizeClick(size)}
+                style={{
+                  backgroundColor:
+                    selectedSize === size ? "lightgrey" : "transparent",
+                }}
+              >
                 {size}
               </button>
             ))}
@@ -82,13 +142,21 @@ const ClothesDetailsChoose = ({ product }) => {
               type="number"
               id="clothes-details-qty-input"
               readOnly
-              value="1"
+              value={quantity}
             />
             <div className="clothes-details-qty-buttons-wrapper">
-              <button className="first-button">
+              <button
+                className="first-button"
+                onClick={() => handleQuantityChange(1)}
+                aria-label="Increase quantity"
+              >
                 <KeyboardArrowUpRoundedIcon />
               </button>
-              <button className="second-button">
+              <button
+                className="second-button"
+                onClick={() => handleQuantityChange(-1)}
+                aria-label="Decrease quantity"
+              >
                 <KeyboardArrowDownRoundedIcon />
               </button>
             </div>
@@ -98,7 +166,10 @@ const ClothesDetailsChoose = ({ product }) => {
             <button className="clothes-details-heart-button">
               <FavoriteBorderRoundedIcon />
             </button>
-            <button className="clothes-details-add-basket-button">
+            <button
+              className="clothes-details-add-basket-button"
+              onClick={handleAddToBasket}
+            >
               კალათაში დამატება
             </button>
           </div>
