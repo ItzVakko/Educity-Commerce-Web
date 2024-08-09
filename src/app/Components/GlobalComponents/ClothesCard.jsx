@@ -1,11 +1,10 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
-
 import MenImg from "../../Assets/Images/MensClothes/beautiful-male-model-holding-hand-hair 1.png";
+import { useRouter } from "next/navigation";
+import CryptoJS from "crypto-js";
 
 import "./ClothesCard.css";
-import { useDispatch } from "react-redux";
-import { addItem } from "@/app/Store/Reducers/cartReducer";
 
 const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
   const formattedPrice = useMemo(
@@ -13,7 +12,18 @@ const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
     [item.currency, item.price]
   );
 
-  const dispatch = useDispatch();
+  const SECRET_KEY = process.env.NEXT_PUBLIC_SECRET_KEY;
+
+  const hashId = (id) => {
+    return encodeURIComponent(CryptoJS.AES.encrypt(id, SECRET_KEY).toString());
+  };
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    const hashedId = hashId(item._id);
+    router.push(`/product/${hashedId}`);
+  };
 
   return (
     <div
@@ -25,9 +35,7 @@ const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
         src={MenImg}
         alt="ClothesImage"
         style={{ width: imageWidth, height: imageHeight }}
-        onClick={() => {
-          dispatch(addItem(item));
-        }}
+        onClick={() => handleClick()}
       />
 
       <div className="clothes-card-details">

@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../../Components/GlobalComponents/NavBar";
 import CheckoutItems from "./CheckoutItems";
 import PaymentForm from "./PaymentForm";
+import Footer from "@/app/Components/GlobalComponents/Footer";
 
 import "./page.css";
 
@@ -17,6 +18,8 @@ const CheckoutPage = () => {
 
         <PaymentForm />
       </main>
+
+      <Footer />
     </>
   );
 };

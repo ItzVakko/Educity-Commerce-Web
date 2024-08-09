@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import ClothesList from "./ClothesList";
 import Filters from "./Filters";
 import NavBar from "../../Components/GlobalComponents/NavBar";
+import Footer from "@/app/Components/GlobalComponents/Footer";
 
 import "./page.css";
 
@@ -50,6 +51,8 @@ const ClothesPage = () => {
         <Filters onFilterChange={handleFilterChange} />
         <ClothesList clothesData={clothesData} />
       </main>
+
+      <Footer />
     </>
   );
 };

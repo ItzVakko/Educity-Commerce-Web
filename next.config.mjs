@@ -22,7 +22,14 @@ const nextConfig = {
         source: "/login",
         destination: "/Pages/LoginPage",
       },
+      {
+        source: "/product/:id",
+        destination: "/Pages/ClothesDetailsPage/[id]",
+      },
     ];
+  },
+  images: {
+    domains: ["drive.google.com"],
   },
 };
 
