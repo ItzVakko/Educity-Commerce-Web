@@ -50,7 +50,7 @@ const ClothesDetailsPage = () => {
           <div>Loading...</div>
         ) : product ? (
           <>
-            <ClothesDetailsChoose />
+            <ClothesDetailsChoose product={product} />
           </>
         ) : (
           <div>No product found</div>

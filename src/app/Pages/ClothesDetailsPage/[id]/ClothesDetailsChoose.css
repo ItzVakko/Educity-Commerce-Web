@@ -1,8 +1,177 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.clothes-details-wrapper {
+  display: flex;
+  gap: 136px;
+  margin-top: 70px;
+}
+
 .clothes-details-main-image {
-  width: 334px;
-  height: 513px;
-  border: 1px solid black;
+  width: 384px;
+  height: 600px;
+}
+
+.clothes-details-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .clothes-details-line {
+  width: 670px;
+  height: 2px;
+  background-color: #ebd96b;
+}
+
+.clothes-details-model {
+  font-size: 24px;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.clothes-details-brand {
+  font-size: 18px;
+  opacity: 0.5;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.clothes-details-price {
+  margin-top: 27px;
+  font-size: 22px;
+  font-family: "NinoMtavruli", sans-serif;
+}
+
+.clothes-details-price span {
+  font-weight: 600;
+}
+
+.clothes-details-color,
+.clothes-details-size,
+.clothes-details-qty {
+  margin-top: 20px;
+  font-size: 22px;
+  font-family: "NinoMtavruli", sans-serif;
+}
+
+.clothes-details-color-options {
+  display: flex;
+  gap: 10px;
+}
+
+.clothes-details-sizes-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.clothes-details-size-button {
+  opacity: 0.5;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #000000;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.clothes-details-qty-input-wrapper {
+  display: flex;
+  margin-top: 5px;
+}
+
+#clothes-details-qty-input {
+  padding: 16px 17px;
+  width: 46px;
+  height: 46px;
+  outline: none;
+  border: 1px solid #000000;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  opacity: 0.5;
+  font-size: 16px;
+}
+
+#clothes-details-qty-input::-webkit-outer-spin-button,
+#clothes-details-qty-input::-webkit-inner-spin-button {
+  display: none;
+}
+
+.clothes-details-qty-buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.clothes-details-qty-buttons-wrapper button {
+  background-color: transparent;
+  width: 23px;
+  height: 23px;
+  border: 1px solid #000000;
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.first-button {
+  border-top-right-radius: 5px;
+}
+
+.second-button {
+  border-bottom-right-radius: 5px;
+}
+
+.clothes-details-basket-wrapper {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.clothes-details-heart-button {
+  width: 46px;
+  height: 46px;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.clothes-details-heart-button svg {
+  width: 25px;
+  height: 25px;
+  fill: #ebd96b;
+}
+
+.clothes-details-add-basket-button {
+  width: 220px;
+  height: 46px;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: "NinoMtavruli", sans-serif;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.clothes-details-virtual-button {
+  width: 250px;
+  height: 46px;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: "NinoMtavruli", sans-serif;
+  padding-top: 5px;
+  cursor: pointer;
+  margin-top: 30px;
 }
