@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
-import MenImg from "../../Assets/Images/MensClothes/beautiful-male-model-holding-hand-hair 1.png";
 import { useRouter } from "next/navigation";
 import CryptoJS from "crypto-js";
 
@@ -31,8 +30,10 @@ const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
       style={{ width: width, height: height }}
     >
       <Image
+        width={300}
+        height={300}
         className="clothes-card-image"
-        src={MenImg}
+        src={item.mainImage.image}
         alt="ClothesImage"
         style={{ width: imageWidth, height: imageHeight }}
         onClick={() => handleClick()}
