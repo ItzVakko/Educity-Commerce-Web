@@ -50,7 +50,7 @@ const ClothesDetailsChoose = ({ product }) => {
         <div className="clothes-details-main-image-wrapper">
           <Image
             width={500}
-            height={500}
+            height={600}
             className="clothes-details-main-image"
             alt="clothes-image"
             src={mainImage}
@@ -76,14 +76,6 @@ const ClothesDetailsChoose = ({ product }) => {
                   product.mainImage.image
                 )
               }
-              style={{
-                cursor: "pointer",
-                borderRadius: "5px",
-                border:
-                  selectedColor === product.mainImage.color
-                    ? "2px solid #ebd96b"
-                    : "none",
-              }}
             >
               <Image
                 width={80}
@@ -99,14 +91,6 @@ const ClothesDetailsChoose = ({ product }) => {
                 onClick={() =>
                   handleColorClick(colorImage.color, colorImage.image)
                 }
-                style={{
-                  cursor: "pointer",
-                  borderRadius: "5px",
-                  border:
-                    selectedColor === colorImage.color
-                      ? "2px solid #ebd96b"
-                      : "none",
-                }}
               >
                 <Image
                   width={80}

@@ -10,6 +10,7 @@
 .cart-menu-card-wrapper img {
   width: 90px;
   height: 100px;
+  border-radius: 10px;
 }
 
 .cart-menu-card-description {
