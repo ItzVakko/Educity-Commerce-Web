@@ -40,8 +40,13 @@ const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
       />
 
       <div className="clothes-card-details">
-        <div className="clothes-card-details-flex">
-          <h5 className="clothes-card-title">{item.model}</h5>
+        <div
+          className="clothes-card-details-flex"
+          style={{ alignItems: "flex-start" }}
+        >
+          <h5 className="clothes-card-title" onClick={() => handleClick()}>
+            {item.model} For christmas
+          </h5>
           <p className="clothes-card-price">{formattedPrice}</p>
         </div>
         <div className="clothes-card-details-flex">

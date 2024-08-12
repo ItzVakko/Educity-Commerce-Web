@@ -29,17 +29,20 @@ const ClothesPage = () => {
   }, [filters]);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
-  useEffect(() => {
     const params = Object.fromEntries(searchParams.entries());
     setFilters(params);
   }, [searchParams]);
 
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   const handleFilterChange = (newFilters) => {
     const updatedFilters = { ...filters, ...newFilters };
     setFilters(updatedFilters);
+
+    const query = new URLSearchParams(updatedFilters).toString();
+    window.history.pushState(null, "", `/clothes?${query}`);
   };
 
   return (
@@ -51,7 +54,6 @@ const ClothesPage = () => {
         <Filters onFilterChange={handleFilterChange} />
         <ClothesList clothesData={clothesData} />
       </main>
-
       <Footer />
     </>
   );

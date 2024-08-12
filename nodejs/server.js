@@ -2,22 +2,24 @@ const express = require("express");
 const next = require("next");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const Clothes = require("./clothes");
 
 const port = 3000;
-
-const Clothes = require("./clothes.js");
-
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/commerce")
+  .connect("mongodb://127.0.0.1:27017/commerce", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Connected to MongoDB");
   })
   .catch((err) => {
     console.error("Failed to connect to MongoDB", err);
+    process.exit(1); // Exit the process if unable to connect to MongoDB
   });
 
 app.prepare().then(() => {
@@ -25,35 +27,59 @@ app.prepare().then(() => {
 
   server.use(bodyParser.json());
 
+  // Route to fetch clothes with filtering
   server.get("/api/clothes", async (req, res) => {
     try {
-      const { size, status, category, search } = req.query;
+      const { size, category, search, sale, new: isNew } = req.query;
       let filter = {};
 
-      // Filtering by size status and category
       if (size) filter.size = { $in: [size] };
-      if (status) filter.status = status;
       if (category) filter.category = category;
 
-      // Adding search filter
       if (search) {
         filter.$or = [
           { brand: new RegExp(`\\b${search}\\b`, "i") },
           { model: new RegExp(`\\b${search}\\b`, "i") },
-          { name: new RegExp(`\\b${search}\\b`, "i") },
-          { description: new RegExp(`\\b${search}\\b`, "i") },
-          { size: new RegExp(`\\b${search}\\b`, "i") },
-          { category: new RegExp(`\\b${search}\\b`, "i") },
-          { status: new RegExp(`\\b${search}\\b`, "i") },
         ];
       }
 
-      const clothes = await Clothes.find(filter);
+      if (sale) {
+        filter.saleAmount = { $gt: 0 };
+      }
 
+      if (isNew) {
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        filter.createdAt = { $gte: oneWeekAgo };
+      }
+
+      const clothes = await Clothes.find(filter);
       res.json(clothes);
     } catch (err) {
       console.error("Error fetching data:", err);
-      res.status(500).send(err);
+      res.status(500).send("Error fetching data");
+    }
+  });
+
+  // Route to create a new clothing item
+  server.post("/api/clothes", async (req, res) => {
+    try {
+      const newClothingItem = new Clothes({
+        brand: req.body.brand,
+        model: req.body.model,
+        price: req.body.price,
+        currency: req.body.currency,
+        size: req.body.size,
+        category: req.body.category,
+        status: req.body.status,
+        saleAmount: req.body.saleAmount, // Optional
+      });
+
+      const savedItem = await newClothingItem.save();
+      res.status(201).json(savedItem);
+    } catch (error) {
+      console.error("Error creating document:", error);
+      res.status(500).send("Error creating document");
     }
   });
 
@@ -63,6 +89,6 @@ app.prepare().then(() => {
 
   server.listen(port, (err) => {
     if (err) throw err;
-    console.log("Listening on port " + port);
+    console.log(`Listening on port ${port}`);
   });
 });

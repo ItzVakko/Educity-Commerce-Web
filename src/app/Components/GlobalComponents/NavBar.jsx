@@ -103,7 +103,7 @@ export default function NavBar() {
                 </li>
                 <li>
                   <Link
-                    href={{ pathname: "/clothes", query: { status: "sale" } }}
+                    href={{ pathname: "/clothes", query: { sale: "true" } }}
                     passHref
                   >
                     ფასდაკლება
@@ -111,7 +111,7 @@ export default function NavBar() {
                 </li>
                 <li>
                   <Link
-                    href={{ pathname: "/clothes", query: { status: "new" } }}
+                    href={{ pathname: "/clothes", query: { new: "true" } }}
                     passHref
                   >
                     ახალი
@@ -125,7 +125,7 @@ export default function NavBar() {
                   <SearchIcon />
                 </button>
                 <input
-                  placeholder="სიტყვებით ძებნა..."
+                  placeholder="Search..."
                   type="text"
                   name="clothes-search"
                   onChange={(e) => setKeyword(e.target.value)}
@@ -169,7 +169,7 @@ export default function NavBar() {
           <input
             type="text"
             name="clothes-search-responsive"
-            placeholder="სიტყვებით ძებნა..."
+            placeholder="Search..."
             onChange={(e) => setKeyword(e.target.value)}
             value={keyword}
             onKeyDown={handleKeyDown}

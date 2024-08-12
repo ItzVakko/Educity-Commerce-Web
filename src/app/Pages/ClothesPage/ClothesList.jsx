@@ -92,7 +92,7 @@ const ClothesList = React.memo(({ clothesData }) => {
   const width = "224px";
   const height = "366px";
   const imageWidth = "224px";
-  const imageHeight = "315px";
+  const imageHeight = "285px";
 
   return (
     <div>

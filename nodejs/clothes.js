@@ -23,7 +23,6 @@ const mainImageSchema = new mongoose.Schema({
 });
 
 const ClothesSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   brand: {
     type: String,
     required: true,
@@ -48,12 +47,16 @@ const ClothesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  status: {
-    type: String,
-    required: true,
-  },
   mainImage: mainImageSchema,
   colorImages: [colorImageSchema],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  saleAmount: {
+    type: Number,
+    default: null,
+  },
 });
 
 module.exports = mongoose.model("Clothes", ClothesSchema);
