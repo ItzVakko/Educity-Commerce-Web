@@ -29,6 +29,18 @@
 .navbar-buttons-wrapper li {
   margin-top: 7px;
   list-style: none;
+  position: relative;
+}
+
+.navbar-buttons-wrapper li::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background-color: white;
+  left: 0;
+  bottom: -3px;
+  transition: width 0.4s ease-in-out;
 }
 
 .navbar-buttons-wrapper li a {
@@ -37,8 +49,16 @@
   font-family: "NinoMtavruli", sans-serif;
   line-height: 22px;
   letter-spacing: 1px;
-  text-decoration: none;
   color: white;
+  text-decoration: none;
+}
+
+.navbar-buttons-wrapper li:hover::after {
+  width: 100%;
+}
+
+.navbar-buttons-wrapper li.active::after {
+  width: 100%;
 }
 
 .navbar-wrapper .HeaderMiddleContainer .HeaderMiddleContainerInput form {

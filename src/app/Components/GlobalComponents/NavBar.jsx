@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 
 import "./NavBar.css";
 
-export default function NavBar() {
+const NavBar = () => {
   const [keyword, setKeyword] = useState("");
   const [hidden, setHidden] = useState(true);
   const [searchTransition, setSearchTransition] = useState("translateX(-100%)");
@@ -29,11 +29,7 @@ export default function NavBar() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 1000) {
-        setHidden(false);
-      } else {
-        setHidden(true);
-      }
+      setHidden(window.innerWidth > 1000);
     };
 
     handleResize();
@@ -56,6 +52,11 @@ export default function NavBar() {
     if (event.key === "Enter") {
       handleSearch(event);
     }
+  };
+
+  const isActive = (queryKey, queryValue) => {
+    const currentQuery = new URLSearchParams(window.location.search);
+    return currentQuery.get(queryKey) === queryValue;
   };
 
   return (
@@ -82,7 +83,7 @@ export default function NavBar() {
           >
             <nav className="navbar">
               <ul className="navbar-buttons-wrapper">
-                <li>
+                <li className={isActive("category", "men") ? "active" : ""}>
                   <Link
                     href={{ pathname: "/clothes", query: { category: "men" } }}
                     passHref
@@ -90,7 +91,7 @@ export default function NavBar() {
                     კაცი
                   </Link>
                 </li>
-                <li>
+                <li className={isActive("category", "women") ? "active" : ""}>
                   <Link
                     href={{
                       pathname: "/clothes",
@@ -101,7 +102,7 @@ export default function NavBar() {
                     ქალი
                   </Link>
                 </li>
-                <li>
+                <li className={isActive("sale", "true") ? "active" : ""}>
                   <Link
                     href={{ pathname: "/clothes", query: { sale: "true" } }}
                     passHref
@@ -109,7 +110,7 @@ export default function NavBar() {
                     ფასდაკლება
                   </Link>
                 </li>
-                <li>
+                <li className={isActive("new", "true") ? "active" : ""}>
                   <Link
                     href={{ pathname: "/clothes", query: { new: "true" } }}
                     passHref
@@ -184,4 +185,6 @@ export default function NavBar() {
       <CartMenu isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
     </>
   );
-}
+};
+
+export default NavBar;
