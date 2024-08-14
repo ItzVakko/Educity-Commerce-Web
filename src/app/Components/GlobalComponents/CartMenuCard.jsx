@@ -60,7 +60,7 @@ const CartMenuCard = ({ item }) => {
     );
   }, [dispatch, item._id, item.selectedSize, item.selectedColor]);
 
-  const formattedPrice = `${item.price} ${item.currency}`;
+  const price = item.price - item.saleAmount;
 
   return (
     <div className="cart-menu-card-wrapper">
@@ -133,7 +133,7 @@ const CartMenuCard = ({ item }) => {
               </div>
             </div>
             <span>x</span>
-            {formattedPrice}
+            {price} ₾
           </div>
           <DeleteForeverIcon
             onClick={handleRemove}

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import CryptoJS from "crypto-js";
@@ -6,11 +6,6 @@ import CryptoJS from "crypto-js";
 import "./ClothesCard.css";
 
 const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
-  const formattedPrice = useMemo(
-    () => `${item.currency} ${item.price}`,
-    [item.currency, item.price]
-  );
-
   const SECRET_KEY = process.env.NEXT_PUBLIC_SECRET_KEY;
 
   const hashId = (id) => {
@@ -23,6 +18,8 @@ const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
     const hashedId = hashId(item._id);
     router.push(`/product/${hashedId}`);
   };
+
+  const price = item.price - item.saleAmount;
 
   return (
     <div
@@ -47,7 +44,9 @@ const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
           <h5 className="clothes-card-title" onClick={() => handleClick()}>
             {item.model} For christmas
           </h5>
-          <p className="clothes-card-price">{formattedPrice}</p>
+          <p className="clothes-card-price">
+            {item.saleAmount > 0 && <s>{item.price}</s>} {price} ₾
+          </p>
         </div>
         <div className="clothes-card-details-flex">
           <p className="clothes-card-description">{item.brand}</p>

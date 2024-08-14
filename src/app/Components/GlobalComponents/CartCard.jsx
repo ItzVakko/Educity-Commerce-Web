@@ -33,7 +33,7 @@ const CartCard = ({ item }) => {
     );
   }, [dispatch, item._id, item.selectedSize, item.selectedColor]);
 
-  const formattedPrice = `${item.price} ${item.currency}`;
+  const totalPrice = item.price - item.saleAmount;
 
   return (
     <div className="cart-card-wrapper">
@@ -62,7 +62,7 @@ const CartCard = ({ item }) => {
           </p>
 
           <span className="product-price">
-            {qty} x {formattedPrice}
+            {qty} x {totalPrice} ₾
           </span>
         </div>
       </div>

@@ -53,6 +53,10 @@
   font-family: "NinoMtavruli", sans-serif;
 }
 
+.clothes-details-price s {
+  opacity: 0.7;
+}
+
 .clothes-details-price span {
   font-weight: 600;
 }

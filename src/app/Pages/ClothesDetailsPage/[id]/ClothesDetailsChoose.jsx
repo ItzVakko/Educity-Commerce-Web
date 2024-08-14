@@ -44,6 +44,18 @@ const ClothesDetailsChoose = ({ product }) => {
     dispatch(addItem(item));
   };
 
+  const price = product.price - product.saleAmount;
+
+  const formattedSalePrice = product.price.toLocaleString("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+
+  const formattedPrice = price.toLocaleString("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+
   return (
     <div className="container">
       <div className="clothes-details-wrapper">
@@ -63,7 +75,11 @@ const ClothesDetailsChoose = ({ product }) => {
           <h1 className="clothes-details-model">{product.model}</h1>
           <h2 className="clothes-details-brand">{product.brand}</h2>
           <p className="clothes-details-price">
-            ფასი <span>{product.price} ₾</span>
+            ფასი{"    "}
+            <span>
+              {product.saleAmount > 0 && <s> {formattedSalePrice}</s>}{" "}
+              {formattedPrice} ₾
+            </span>
           </p>
 
           <p className="clothes-details-color">ფერი</p>

@@ -11,6 +11,7 @@
 .clothes-card-wrapper:hover {
   transform: scale(1.05);
   box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 20px;
+  height: auto;
 }
 
 .clothes-card-image {
@@ -19,6 +20,7 @@
   border-radius: 10px;
   margin-bottom: 11px;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .clothes-card-wrapper:hover .clothes-card-image {
@@ -51,19 +53,16 @@
   cursor: pointer;
 }
 
-.clothes-card-wrapper:hover .clothes-card-title {
-  font-size: 12px;
-  white-space: normal;
-  overflow: visible;
-  color: #000;
-}
-
 .clothes-card-price {
   font-size: 14px;
   padding: 0 5px;
   white-space: nowrap;
   overflow: visible;
   transition: color 0.3s ease;
+}
+
+.clothes-card-price s {
+  opacity: 0.7;
 }
 
 .clothes-card-description {

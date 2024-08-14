@@ -10,11 +10,22 @@ const CheckoutItems = () => {
   const [isEmpty, setIsEmpty] = useState(false);
   const product = useSelector((state) => state.cart.items);
 
-  const totalPrice = useSelector((state) =>
+  const itemsPrice = useSelector((state) =>
     state.cart.items.reduce((sum, item) => sum + item.qty * item.price, 0)
   );
 
+  const salePrice = useSelector((state) =>
+    state.cart.items.reduce((sum, item) => sum + item.qty * item.saleAmount, 0)
+  );
+
+  const totalPrice = itemsPrice - salePrice;
+
   const formattedTotalPrice = totalPrice.toLocaleString("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+
+  const formattedSalePrice = salePrice.toLocaleString("en-US", {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
@@ -48,12 +59,12 @@ const CheckoutItems = () => {
 
       <div className="prices-wrapper">
         <p>ფასდაკლება:</p>
-        <span>0,00₾</span>
+        <span>{formattedSalePrice} ₾</span>
       </div>
 
       <div className="prices-wrapper">
         <p>ჯამში:</p>
-        <span>{formattedTotalPrice}₾</span>
+        <span>{formattedTotalPrice} ₾</span>
       </div>
     </section>
   );

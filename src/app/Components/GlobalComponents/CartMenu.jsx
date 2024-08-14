@@ -11,11 +11,22 @@ const CartMenu = ({ isCartOpen, setIsCartOpen }) => {
   const [isEmpty, setIsEmpty] = useState(true);
   const product = useSelector((state) => state.cart.items);
 
-  const totalPrice = useSelector((state) =>
+  const itemsPrice = useSelector((state) =>
     state.cart.items.reduce((sum, item) => sum + item.qty * item.price, 0)
   );
 
+  const salePrice = useSelector((state) =>
+    state.cart.items.reduce((sum, item) => sum + item.qty * item.saleAmount, 0)
+  );
+
+  const totalPrice = itemsPrice - salePrice;
+
   const formattedTotalPrice = totalPrice.toLocaleString("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+
+  const formattedItemsPrice = itemsPrice.toLocaleString("en-US", {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
@@ -72,7 +83,16 @@ const CartMenu = ({ isCartOpen, setIsCartOpen }) => {
         <h2 className="cart-menu-cards-priceSum cart-menu-h2">
           გადასახადი:
           <div>
-            <s>100</s> <span>{formattedTotalPrice} ₾</span>
+            {salePrice > 0 && (
+              <s>
+                {formattedItemsPrice}
+                {"  "}
+              </s>
+            )}
+            <span>
+              {"  "}
+              {formattedTotalPrice} ₾
+            </span>
           </div>
         </h2>
         <Link href="/checkout">
