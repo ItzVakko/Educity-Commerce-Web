@@ -54,7 +54,7 @@ const Filters = ({ onFilterChange }) => {
   );
 
   return (
-    <aside>
+    <aside className="filters-wrapper">
       <h4 className="filters-title">გაფილტვრა</h4>
       <section className="size-filter-section">
         <h5 className="size-filter-title">ზომები</h5>

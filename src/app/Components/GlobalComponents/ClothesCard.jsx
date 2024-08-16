@@ -34,6 +34,7 @@ const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
         alt="ClothesImage"
         style={{ width: imageWidth, height: imageHeight }}
         onClick={() => handleClick()}
+        priority
       />
 
       <div className="clothes-card-details">

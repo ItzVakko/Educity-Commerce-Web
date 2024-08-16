@@ -53,6 +53,14 @@
   cursor: pointer;
 }
 
+.clothes-card-wrapper:hover .clothes-card-title {
+  padding-top: 5px;
+}
+
+.clothes-card-wrapper:hover .clothes-card-price {
+  padding-top: 5px;
+}
+
 .clothes-card-price {
   font-size: 14px;
   padding: 0 5px;

@@ -1,0 +1,89 @@
+.burger-menu-wrapper {
+  position: fixed;
+  width: 320px;
+  height: 100vh;
+  background: rgba(35, 35, 35, 1);
+  z-index: 1000;
+  top: 0;
+  border-right: 1px solid rgb(62, 62, 62);
+  box-shadow: rgba(0, 0, 0, 0.12) 3px 0px 3px, rgba(0, 0, 0, 0.24) 2px 0px 2px;
+  transition: transform 1s;
+}
+
+.burger-menu-img-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 35px;
+  margin-right: 25px;
+}
+
+.burger-menu-img-wrapper img {
+  width: 140px;
+  height: 35px;
+}
+
+.burger-menu-img-wrapper div svg {
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.burger-menu-line {
+  width: 100%;
+  height: 1px;
+  background-color: rgb(62, 62, 62);
+}
+
+.burger-menu-buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 20px 30px 20px 25px;
+}
+
+.burger-menu-buttons-wrapper a {
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 1s ease;
+  border-color: rgb(62, 62, 62);
+}
+
+.burger-menu-buttons-wrapper a li {
+  color: white;
+  font-family: "NinoMtavruli", sans-serif;
+  font-size: 18px;
+  transform: translateY(-2px);
+  transition: all 0.5s ease-in;
+}
+
+.burger-menu-buttons-wrapper a svg {
+  transform: translateY(4px);
+  margin-right: 10px;
+}
+
+.burger-menu-buttons-wrapper a:hover {
+  border: 1px solid rgb(62, 62, 62);
+  background-color: rgba(38, 38, 38, 1);
+}
+
+.burger-menu-buttons-wrapper a:hover li {
+  color: #ffc107;
+}
+
+.burger-menu-buttons-wrapper a.active {
+  border: 1px solid rgb(62, 62, 62);
+  background-color: rgba(38, 38, 38, 1);
+}
+
+.burger-menu-buttons-wrapper a.active li {
+  color: #ffc107;
+}

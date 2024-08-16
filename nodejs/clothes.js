@@ -35,10 +35,6 @@ const ClothesSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  currency: {
-    type: String,
-    required: true,
-  },
   size: {
     type: [String],
     required: true,

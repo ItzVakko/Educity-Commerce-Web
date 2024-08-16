@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import CartMenu from "./CartMenu";
 import { useRouter } from "next/navigation";
+import BurgerMenuResponsive from "./BurgerMenuResponsive";
 
 import "./NavBar.css";
 
@@ -20,6 +21,7 @@ const NavBar = () => {
   const [hidden, setHidden] = useState(true);
   const [searchTransition, setSearchTransition] = useState("translateX(-100%)");
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   const router = useRouter();
 
@@ -30,6 +32,10 @@ const NavBar = () => {
   useEffect(() => {
     const handleResize = () => {
       setHidden(window.innerWidth > 1000);
+
+      if (window.innerWidth > 1000) {
+        setIsBurgerMenuOpen(false);
+      }
     };
 
     handleResize();
@@ -67,7 +73,7 @@ const NavBar = () => {
             className="responsive-icons-wrapper"
             style={{ display: hidden ? "none" : "flex" }}
           >
-            <button>
+            <button onClick={() => setIsBurgerMenuOpen(true)}>
               <MenuRoundedIcon className="responsive-burger-icon" />
             </button>
             <button onClick={() => setSearchTransition("translateX(0)")}>
@@ -75,7 +81,7 @@ const NavBar = () => {
             </button>
           </div>
           <div className="HeaderLogoContainer">
-            <Image src={Logo} alt="Logo" />
+            <Image src={Logo} alt="Logo" priority />
           </div>
           <div
             className="HeaderMiddleContainer"
@@ -126,7 +132,7 @@ const NavBar = () => {
                   <SearchIcon />
                 </button>
                 <input
-                  placeholder="Search..."
+                  placeholder="სიტყვებით ძიება..."
                   type="text"
                   name="clothes-search"
                   onChange={(e) => setKeyword(e.target.value)}
@@ -170,7 +176,7 @@ const NavBar = () => {
           <input
             type="text"
             name="clothes-search-responsive"
-            placeholder="Search..."
+            placeholder="სიტყვებით ძიება..."
             onChange={(e) => setKeyword(e.target.value)}
             value={keyword}
             onKeyDown={handleKeyDown}
@@ -183,6 +189,11 @@ const NavBar = () => {
 
       {/* Cart menu slide default hidden! */}
       <CartMenu isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
+      {/* Burger menu slide default hidden! */}
+      <BurgerMenuResponsive
+        isBurgerMenuOpen={isBurgerMenuOpen}
+        setIsBurgerMenuOpen={setIsBurgerMenuOpen}
+      />
     </>
   );
 };

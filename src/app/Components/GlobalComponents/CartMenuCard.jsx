@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useCallback } from "react";
 import Image from "next/image";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -9,7 +11,7 @@ import {
 } from "@/app/Store/Reducers/cartReducer";
 import "./CartMenuCard.css";
 
-const CartMenuCard = ({ item }) => {
+const CartMenuCard = React.memo(({ item }) => {
   const dispatch = useDispatch();
 
   const colorImage =
@@ -64,7 +66,12 @@ const CartMenuCard = ({ item }) => {
 
   return (
     <div className="cart-menu-card-wrapper">
-      <Image src={colorImage} alt="product-img" width={100} height={100} />
+      <Image
+        src={colorImage}
+        alt={`Image of ${item.model}`}
+        width={100}
+        height={100}
+      />
       <div className="cart-menu-card-description">
         <div>
           <h3 className="cart-menu-card-model">{item.model}</h3>
@@ -143,6 +150,6 @@ const CartMenuCard = ({ item }) => {
       </div>
     </div>
   );
-};
+});
 
 export default CartMenuCard;
