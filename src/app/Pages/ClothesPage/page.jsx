@@ -9,7 +9,7 @@ import Footer from "@/app/Components/GlobalComponents/Footer";
 
 import "./page.css";
 
-const ClothesPage = () => {
+const ClothesPage = React.memo(() => {
   const [clothesData, setClothesData] = useState([]);
   const [filters, setFilters] = useState({});
   const searchParams = useSearchParams();
@@ -38,10 +38,8 @@ const ClothesPage = () => {
   }, [fetchData]);
 
   const handleFilterChange = (newFilters) => {
-    const updatedFilters = { ...filters, ...newFilters };
-    setFilters(updatedFilters);
-
-    const query = new URLSearchParams(updatedFilters).toString();
+    setFilters(newFilters);
+    const query = new URLSearchParams(newFilters).toString();
     window.history.pushState(null, "", `/clothes?${query}`);
   };
 
@@ -57,6 +55,6 @@ const ClothesPage = () => {
       <Footer />
     </>
   );
-};
+});
 
 export default ClothesPage;

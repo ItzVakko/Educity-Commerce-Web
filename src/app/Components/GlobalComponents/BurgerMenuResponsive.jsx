@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Logo from "../../Assets/Images/NavBar/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,10 +7,22 @@ import FemaleIcon from "@mui/icons-material/Female";
 import DiscountIcon from "@mui/icons-material/Discount";
 import FeedIcon from "@mui/icons-material/Feed";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import {
+  SlSocialFacebook,
+  SlSocialLinkedin,
+  SlSocialTwitter,
+  SlSocialGoogle,
+} from "react-icons/sl";
+import { FaInstagram } from "react-icons/fa";
 
 import "./BurgerMenuResponsive.css";
 
 const BurgerMenuResponsive = ({ isBurgerMenuOpen, setIsBurgerMenuOpen }) => {
+  const handleClose = useCallback(
+    () => setIsBurgerMenuOpen(false),
+    [setIsBurgerMenuOpen]
+  );
+
   const isActive = (queryKey, queryValue) => {
     const currentQuery = new URLSearchParams(window.location.search);
     return currentQuery.get(queryKey) === queryValue;
@@ -24,7 +36,7 @@ const BurgerMenuResponsive = ({ isBurgerMenuOpen, setIsBurgerMenuOpen }) => {
     >
       <div className="burger-menu-img-wrapper">
         <Image src={Logo} alt="company-logo" priority />
-        <div onClick={() => setIsBurgerMenuOpen(false)}>
+        <div onClick={handleClose}>
           <CloseRoundedIcon />
         </div>
       </div>
@@ -72,6 +84,41 @@ const BurgerMenuResponsive = ({ isBurgerMenuOpen, setIsBurgerMenuOpen }) => {
           <li>
             <FeedIcon />
             ახალი
+          </li>
+        </Link>
+      </ul>
+
+      <div className="burger-menu-line"></div>
+
+      <ul className="burger-menu-buttons-wrapper burger-menu-social-wrapper">
+        <Link href="#">
+          <li>
+            <SlSocialFacebook />
+            Facebook
+          </li>
+        </Link>
+        <Link href="#">
+          <li>
+            <FaInstagram />
+            Instagram
+          </li>
+        </Link>
+        <Link href="#">
+          <li>
+            <SlSocialLinkedin />
+            Linkedin
+          </li>
+        </Link>
+        <Link href="#">
+          <li>
+            <SlSocialTwitter />
+            Twitter
+          </li>
+        </Link>
+        <Link href="#">
+          <li>
+            <SlSocialGoogle />
+            Google
           </li>
         </Link>
       </ul>

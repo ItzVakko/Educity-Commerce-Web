@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
@@ -21,13 +23,28 @@ const Filters = ({ onFilterChange }) => {
   const handleFilterClick = useCallback(
     (filterType, value) => {
       setFilters((prevFilters) => {
-        const isActive = prevFilters[filterType] === value;
-        const updatedFilters = isActive
-          ? { ...prevFilters, [filterType]: undefined }
-          : { ...prevFilters, [filterType]: value };
+        let updatedFilters = { ...prevFilters };
 
-        if (updatedFilters[filterType] === undefined) {
-          delete updatedFilters[filterType];
+        if (filterType === "size") {
+          if (updatedFilters[filterType] === value) {
+            delete updatedFilters[filterType];
+          } else {
+            updatedFilters[filterType] = value;
+          }
+        } else {
+          const currentValues = updatedFilters[filterType]
+            ? updatedFilters[filterType].split(",")
+            : [];
+          if (currentValues.includes(value)) {
+            updatedFilters[filterType] = currentValues
+              .filter((item) => item !== value)
+              .join(",");
+            if (!updatedFilters[filterType]) {
+              delete updatedFilters[filterType];
+            }
+          } else {
+            updatedFilters[filterType] = [...currentValues, value].join(",");
+          }
         }
 
         if (debounceTimeout.current) {
@@ -48,7 +65,13 @@ const Filters = ({ onFilterChange }) => {
 
   const isButtonActive = useCallback(
     (filterType, value) => {
-      return filters[filterType] === value;
+      if (filterType === "size") {
+        return filters[filterType] === value;
+      }
+      const currentValues = filters[filterType]
+        ? filters[filterType].split(",")
+        : [];
+      return currentValues.includes(value);
     },
     [filters]
   );

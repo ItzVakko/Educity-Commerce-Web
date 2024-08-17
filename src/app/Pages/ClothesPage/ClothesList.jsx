@@ -89,24 +89,11 @@ const ClothesList = React.memo(({ clothesData }) => {
     return clothesData.slice(startIndex, endIndex);
   }, [currentPage, pageSize, clothesData]);
 
-  const width = "224px";
-  const height = "366px";
-  const imageWidth = "224px";
-  const imageHeight = "285px";
-
   return (
     <div>
       <section className="clothes-list">
         {cardsData.map((item, index) => (
-          <ClothesCard
-            key={index}
-            item={item}
-            width={width}
-            height={height}
-            imageWidth={imageWidth}
-            imageHeight={imageHeight}
-            className="clothes-card"
-          />
+          <ClothesCard key={index} item={item} className="clothes-card" />
         ))}
       </section>
       <section className="clothes-pagination">

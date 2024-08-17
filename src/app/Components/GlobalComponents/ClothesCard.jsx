@@ -5,7 +5,7 @@ import CryptoJS from "crypto-js";
 
 import "./ClothesCard.css";
 
-const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
+const ClothesCard = ({ item }) => {
   const SECRET_KEY = process.env.NEXT_PUBLIC_SECRET_KEY;
 
   const hashId = (id) => {
@@ -22,17 +22,13 @@ const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
   const price = item.price - item.saleAmount;
 
   return (
-    <div
-      className="clothes-card-wrapper"
-      style={{ width: width, height: height }}
-    >
+    <div className="clothes-card-wrapper">
       <Image
-        width={300}
-        height={300}
-        className="clothes-card-image"
         src={item.mainImage.image}
         alt="ClothesImage"
-        style={{ width: imageWidth, height: imageHeight }}
+        width={224}
+        height={285}
+        className="clothes-card-image"
         onClick={() => handleClick()}
         priority
       />
@@ -43,7 +39,7 @@ const ClothesCard = ({ item, width, height, imageWidth, imageHeight }) => {
           style={{ alignItems: "flex-start" }}
         >
           <h5 className="clothes-card-title" onClick={() => handleClick()}>
-            {item.model} For christmas
+            {item.model} For Christmas
           </h5>
           <p className="clothes-card-price">
             {item.saleAmount > 0 && <s>{item.price}</s>} {price} ₾

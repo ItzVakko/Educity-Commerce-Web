@@ -3,33 +3,26 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Logo from "../../Assets/Images/NavBar/Logo.png";
-import { SlSocialFacebook } from "react-icons/sl";
+import {
+  SlSocialFacebook,
+  SlSocialLinkedin,
+  SlSocialTwitter,
+  SlSocialGoogle,
+} from "react-icons/sl";
 import { FaInstagram } from "react-icons/fa";
-import { SlSocialLinkedin } from "react-icons/sl";
-import { SlSocialTwitter } from "react-icons/sl";
-import { SlSocialGoogle } from "react-icons/sl";
 
 import "./Footer.css";
 
 const Footer = () => {
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(window.innerWidth <= 650);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 650) {
-        setHidden(true);
-      } else {
-        setHidden(false);
-      }
+      setHidden(window.innerWidth <= 650);
     };
-
-    handleResize();
 
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -38,7 +31,7 @@ const Footer = () => {
         <Image
           src={Logo}
           alt="Logo"
-          style={{ display: hidden ? "none" : "block" }}
+          className={hidden ? "logo-hidden" : "logo-visible"}
         />
 
         <ul className="footer-text-wrapper">
