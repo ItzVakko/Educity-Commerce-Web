@@ -8,6 +8,12 @@
   margin-bottom: 25px;
 }
 
+.clothes-list-not-found {
+  font-family: "NinoMtavruli", sans-serif;
+  font-size: 20px;
+  opacity: 0.7;
+}
+
 .clothes-pagination {
   display: flex;
   justify-content: center;

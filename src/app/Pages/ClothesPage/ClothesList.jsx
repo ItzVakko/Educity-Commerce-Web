@@ -92,9 +92,15 @@ const ClothesList = React.memo(({ clothesData }) => {
   return (
     <div>
       <section className="clothes-list">
-        {cardsData.map((item, index) => (
-          <ClothesCard key={index} item={item} className="clothes-card" />
-        ))}
+        {clothesData.length > 0 ? (
+          cardsData.map((item, index) => (
+            <ClothesCard key={index} item={item} className="clothes-card" />
+          ))
+        ) : (
+          <span className="clothes-list-not-found">
+            ასეთი პროდუქტი ვერ მოიძებნა!
+          </span>
+        )}
       </section>
       <section className="clothes-pagination">
         <button
