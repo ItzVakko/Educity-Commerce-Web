@@ -1,4 +1,4 @@
-import Partner from "../../EducityShopping/src/app/Components/PartnerCompany/Partner";
+import Partner from "./Partner";
 import CategorySection from "./CategorySection";
 import ClothesCategories from "./ClothesCategories";
 import Footer from "./Components/GlobalComponents/Footer";

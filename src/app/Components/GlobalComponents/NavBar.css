@@ -72,6 +72,10 @@
   border-radius: 50px;
 }
 
+.HeaderLogoContainer img {
+  cursor: pointer;
+}
+
 .HeaderMiddleContainerInput form input {
   width: 100%;
   color: rgba(0, 0, 0, 0.5);

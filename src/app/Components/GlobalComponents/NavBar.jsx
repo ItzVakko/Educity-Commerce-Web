@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
@@ -11,9 +11,8 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import CartMenu from "./CartMenu";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import BurgerMenuResponsive from "./BurgerMenuResponsive";
-
 import "./NavBar.css";
 
 const NavBar = () => {
@@ -24,6 +23,7 @@ const NavBar = () => {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const itemNumber = useSelector((state) =>
     state.cart.items.reduce((total, item) => total + item.qty, 0)
@@ -60,9 +60,12 @@ const NavBar = () => {
     }
   };
 
-  const isActive = (queryKey, queryValue) => {
-    const currentQuery = new URLSearchParams(window.location.search);
-    return currentQuery.get(queryKey) === queryValue;
+  const handleLogoClick = () => {
+    router.push("/");
+  };
+
+  const getActiveClass = (key, value) => {
+    return searchParams.get(key) === value ? "active" : "";
   };
 
   return (
@@ -80,7 +83,7 @@ const NavBar = () => {
               <SearchIcon className="responsive-search-icon" />
             </button>
           </div>
-          <div className="HeaderLogoContainer">
+          <div className="HeaderLogoContainer" onClick={handleLogoClick}>
             <Image src={Logo} alt="Logo" priority />
           </div>
           <div
@@ -89,7 +92,7 @@ const NavBar = () => {
           >
             <nav className="navbar">
               <ul className="navbar-buttons-wrapper">
-                <li className={isActive("category", "men") ? "active" : ""}>
+                <li className={getActiveClass("category", "men")}>
                   <Link
                     href={{ pathname: "/clothes", query: { category: "men" } }}
                     passHref
@@ -97,7 +100,7 @@ const NavBar = () => {
                     კაცი
                   </Link>
                 </li>
-                <li className={isActive("category", "women") ? "active" : ""}>
+                <li className={getActiveClass("category", "women")}>
                   <Link
                     href={{
                       pathname: "/clothes",
@@ -108,7 +111,7 @@ const NavBar = () => {
                     ქალი
                   </Link>
                 </li>
-                <li className={isActive("sale", "true") ? "active" : ""}>
+                <li className={getActiveClass("sale", "true")}>
                   <Link
                     href={{ pathname: "/clothes", query: { sale: "true" } }}
                     passHref
@@ -116,7 +119,7 @@ const NavBar = () => {
                     ფასდაკლება
                   </Link>
                 </li>
-                <li className={isActive("new", "true") ? "active" : ""}>
+                <li className={getActiveClass("new", "true")}>
                   <Link
                     href={{ pathname: "/clothes", query: { new: "true" } }}
                     passHref
