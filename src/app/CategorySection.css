@@ -3,20 +3,48 @@
   margin: 40px 50px;
   grid-template-columns: auto auto auto auto;
   justify-content: space-between;
+  gap: 10px;
 }
+
 .section1ContainerItem {
   border-radius: 15px;
   max-width: 320px;
-  max-height: 100%;
-}
-.section1ContainerItemH1Container {
-  background-color: rgba(35, 35, 35, 1);
-  border-radius: 15px;
+  height: 230px;
   position: relative;
-  top: -60px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.section1ContainerItem:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.section1ContainerItem img {
+  width: 100%;
+  height: 100%;
+}
+
+.section1ContainerItemH1Container {
+  background-color: rgba(35, 35, 35, 0.8);
+  border-radius: 15px;
+  position: absolute;
+  width: 100%;
+  padding: 5px 0;
+  padding-top: 10px;
+  bottom: 0;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.section1ContainerItem:hover .section1ContainerItemH1Container {
+  background-color: rgba(35, 35, 35, 0.6);
+}
+
 .section1ContainerItemH1Container h1 {
   color: rgba(244, 189, 189, 1);
-  padding: 10px 0px;
+  padding: 10px 0;
   text-align: center;
+  font-size: 24px;
+  font-family: "NinoMtavruli", sans-serif;
 }

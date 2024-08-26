@@ -2,10 +2,10 @@
   display: flex;
   justify-content: space-between;
   padding: 24px 50px;
-  background-color: rgba(235, 217, 107, 1);
+  background-color: #c7f9cc;
   align-items: center;
 }
 
 .PartneryCompanyContainer .PartnerImg {
-  background-color: rgba(235, 217, 107, 1);
+  background-color: #c7f9cc;
 }
