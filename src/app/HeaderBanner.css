@@ -1,0 +1,45 @@
+.HeaderBanner {
+  width: calc(100% - 100px);
+  height: 536px;
+  margin: 18px 50px;
+  background: rgba(244, 189, 189, 1);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 70px;
+  align-items: center;
+  border-radius: 25px;
+  background-image: url("./Assets/Images/HeaderBanner/mainImgBlackRecentagle.png"),
+    url("./Assets/Images/HeaderBanner/mainImgYellowReccentagle.png");
+  background-repeat: no-repeat;
+  background-position: 63px 54px, 72px 250px;
+}
+.HeaderBanner .HeaderBannerInfoWrapper h1 {
+  width: 369px;
+  height: 331px;
+  font-weight: 900;
+  font-size: 45px;
+  line-height: 57px;
+  color: rgba(255, 255, 255, 1);
+  margin-left: 20px;
+}
+.HeaderBanner .HeaderBannerInfoWrapper p {
+  color: rgba(25, 24, 24, 1);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -5%;
+  line-height: 22px;
+}
+.HeaderBanner .HeaderBannerInfoWrapper button {
+  background: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -5%;
+  font-size: 14px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}

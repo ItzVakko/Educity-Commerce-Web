@@ -1,0 +1,93 @@
+.ClothesCategoriesContainer {
+  padding: 0px 50px;
+  overflow: hidden;
+  height: 465px;
+}
+
+.ClothesCategoriesContentContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 17px;
+  row-gap: 50px;
+}
+
+.ClothesCategoriesHead {
+  display: inline-block;
+  font-size: 28px;
+  line-height: 42px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  position: relative;
+  font-family: "NinoMtavruli", sans-serif;
+}
+
+.ClothesCategoriesHead a {
+  text-decoration: none;
+  color: rgba(35, 35, 35, 1);
+}
+
+.ClothesCategoriesHead::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background-color: black;
+  left: 0;
+  bottom: 0;
+  transition: width 0.4s ease-in-out;
+}
+
+.ClothesCategoriesHead:hover::after {
+  width: 100%;
+}
+
+.ClothesCategoriesContainerbrpric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ClothesCategoriesContainerbrpric h5 {
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.66);
+  font-size: 11px;
+  line-height: 16.5px;
+}
+.ClothesCategoriesContainerbrpric h4 {
+  font-size: 12px;
+  line-height: 17px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 1);
+  padding-right: 8px;
+}
+.ClothesCategoriesContainermodsize {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ClothesCategoriesContainermodsize h4 {
+  color: rgba(0, 0, 0, 1);
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+}
+.ClothesCategoriesSize {
+  margin-top: 7px;
+  display: flex;
+  padding-right: 6px;
+  gap: 4px;
+}
+.ClothesCategoriesContainermodsize .ClothesCategoriesSize h5 {
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 9px;
+  line-height: 13px;
+  justify-content: center;
+  display: flex;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 1);
+  background: rgba(217, 217, 217, 1);
+}

@@ -19,7 +19,7 @@ mongoose
   })
   .catch((err) => {
     console.error("Failed to connect to MongoDB", err);
-    process.exit(1); // Exit the process if unable to connect to MongoDB
+    process.exit(1);
   });
 
 app.prepare().then(() => {
@@ -27,7 +27,6 @@ app.prepare().then(() => {
 
   server.use(bodyParser.json());
 
-  // Route to fetch clothes with filtering
   server.get("/api/clothes", async (req, res) => {
     try {
       const { size, category, search, sale, new: isNew } = req.query;
@@ -61,7 +60,6 @@ app.prepare().then(() => {
     }
   });
 
-  // Route to create a new clothing item
   server.post("/api/clothes", async (req, res) => {
     try {
       const newClothingItem = new Clothes({
@@ -72,7 +70,7 @@ app.prepare().then(() => {
         size: req.body.size,
         category: req.body.category,
         status: req.body.status,
-        saleAmount: req.body.saleAmount, // Optional
+        saleAmount: req.body.saleAmount,
       });
 
       const savedItem = await newClothingItem.save();

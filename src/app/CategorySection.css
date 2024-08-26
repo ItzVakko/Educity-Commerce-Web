@@ -1,0 +1,22 @@
+.section1Container {
+  display: grid;
+  margin: 40px 50px;
+  grid-template-columns: auto auto auto auto;
+  justify-content: space-between;
+}
+.section1ContainerItem {
+  border-radius: 15px;
+  max-width: 320px;
+  max-height: 100%;
+}
+.section1ContainerItemH1Container {
+  background-color: rgba(35, 35, 35, 1);
+  border-radius: 15px;
+  position: relative;
+  top: -60px;
+}
+.section1ContainerItemH1Container h1 {
+  color: rgba(244, 189, 189, 1);
+  padding: 10px 0px;
+  text-align: center;
+}
