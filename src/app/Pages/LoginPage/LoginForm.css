@@ -93,3 +93,26 @@ label {
   font-size: 15px;
   font-weight: 300;
 }
+
+@media screen and (max-width: 600px) {
+  .login-form {
+    max-width: 314px;
+    padding: 0 15px;
+  }
+
+  #username-login,
+  #password-login {
+    height: 35px;
+    font-size: 12px;
+  }
+
+  .login-page-buttons button {
+    height: 45px;
+    padding: 0 15px;
+    font-size: 16px;
+  }
+
+  .login-button {
+    max-width: 130px;
+  }
+}

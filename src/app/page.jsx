@@ -15,7 +15,7 @@ export default function Home() {
         <HeaderBanner />
       </header>
       <main className="main-page-main-content">
-        {/* <Partner /> */}
+        <Partner />
         <CategorySection />
         <ClothesCategories category="men" categoryGeorgian="კაცი" />
         <ClothesCategories category="women" categoryGeorgian="ქალი" />

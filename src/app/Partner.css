@@ -1,9 +1,11 @@
 .PartneryCompanyContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 24px 50px;
   background-color: #c7f9cc;
   align-items: center;
+  gap: 10px;
 }
 
 .PartneryCompanyContainer .PartnerImg {
