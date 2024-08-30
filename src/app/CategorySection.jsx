@@ -34,7 +34,7 @@ const CategorySection = () => {
   ];
 
   return (
-    <div className="section1Container">
+    <section className="section1Container">
       {images.map((item, index) => (
         <div className="section1ContainerItem" key={index}>
           <Image src={item.img} alt={item.text} />
@@ -45,7 +45,7 @@ const CategorySection = () => {
           </Link>
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 

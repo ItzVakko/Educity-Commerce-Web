@@ -1,6 +1,7 @@
 .HeaderBanner {
   width: calc(100% - 100px);
-  height: 536px;
+  max-height: 536px;
+  height: auto;
   margin: 18px 50px;
   background: rgba(244, 189, 189, 1);
   box-sizing: border-box;
@@ -13,7 +14,23 @@
     url("./Assets/Images/HeaderBanner/mainImgGreenRectangle.png");
   background-repeat: no-repeat;
   background-position: 63px 54px, 72px 250px;
+  position: relative;
 }
+
+.HeaderBanner > * {
+  flex: 1;
+  min-width: 0;
+}
+.HeaderBanner::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+.MainPageBannerImgContainer {
+  max-width: 459px;
+}
+
 .HeaderBanner .HeaderBannerInfoWrapper h1 {
   width: 369px;
   font-weight: 700;
@@ -32,6 +49,7 @@
   line-height: 22px;
   font-family: "NinoMtavruli", sans-serif;
   margin-top: 80px;
+  margin-left: 20px;
 }
 .HeaderBanner .HeaderBannerInfoWrapper button {
   background: rgba(0, 0, 0, 1);
@@ -48,8 +66,182 @@
   margin-top: 20px;
   font-family: "NinoMtavruli", sans-serif;
   transition: 0.5s;
+  margin-left: 20px;
 }
 
 .HeaderBanner .HeaderBannerInfoWrapper button:hover {
   color: #ebd96b;
+}
+
+@media screen and (max-width: 1200px) {
+  .HeaderBanner .HeaderBannerInfoWrapper h1 {
+    font-size: 40px;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper p {
+    font-size: 16px;
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .HeaderBanner {
+    background-position: 63px 34px, 72px 200px;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper h1 {
+    width: 250px;
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper p {
+    font-size: 16px;
+    margin-top: 50px;
+  }
+
+  .MainPageBannerImgContainer {
+    max-width: 359px;
+    height: 310px;
+  }
+
+  .MainPageBannerImgContainer img {
+    max-width: 359px;
+    height: 310px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .HeaderBanner {
+    background-size: 300px 70px;
+    background-position: 63px 34px, 72px 130px;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper h1 {
+    font-size: 25px;
+    margin-top: 0;
+    padding-top: 20px;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper p {
+    font-size: 14px;
+    margin-top: 30px;
+  }
+
+  .MainPageBannerImgContainer {
+    max-width: 309px;
+    height: 260px;
+  }
+
+  .MainPageBannerImgContainer img {
+    max-width: 309px;
+    height: 260px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .HeaderBanner {
+    width: 95%;
+    margin: 18px auto;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper p {
+    font-size: 14px;
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .HeaderBanner {
+    padding: 0 30px;
+    background-size: 270px 70px;
+    background-position: 33px 34px, 42px 130px;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper h1 {
+    font-size: 22px;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper p {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .HeaderBanner {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-size: 88% 70px;
+    background-position: 33px 34px, 39px 25%;
+    max-height: 100%;
+  }
+
+  .HeaderBanner::before {
+    padding-top: 0;
+  }
+
+  .HeaderBannerInfoWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper h1 {
+    width: 100%;
+    font-size: 25px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper p {
+    margin-top: 40px;
+    margin-left: 20px;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper h1 br {
+    display: none;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper button {
+    width: 200px;
+    margin-left: 20px;
+    margin-top: 50px;
+  }
+
+  .MainPageBannerImgContainer img {
+    max-width: 309px;
+    height: 200px;
+    margin: 50px 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .HeaderBanner {
+    background-size: 88% 70px;
+    background-position: 14px 34px, 20px 25%;
+  }
+
+  .MainPageBannerImgContainer {
+    align-self: center;
+  }
+
+  .MainPageBannerImgContainer img {
+    max-width: 240px;
+    height: 200px;
+    margin: 50px 0;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper h1 {
+    margin-left: 0;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper p {
+    margin-left: 0;
+  }
+
+  .HeaderBanner .HeaderBannerInfoWrapper button {
+    margin-left: 0;
+    margin-top: 20px;
+  }
 }

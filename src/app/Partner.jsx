@@ -27,11 +27,11 @@ const Partner = () => {
   ];
 
   return (
-    <div className="PartneryCompanyContainer">
+    <section className="PartneryCompanyContainer">
       {PartnerCompanyLogo.map((item, index) => (
         <Image className="PartnerImg" key={index} src={item} alt="IMG" />
       ))}
-    </div>
+    </section>
   );
 };
 

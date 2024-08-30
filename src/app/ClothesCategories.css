@@ -91,3 +91,16 @@
   color: rgba(0, 0, 0, 1);
   background: rgba(217, 217, 217, 1);
 }
+
+@media screen and (max-width: 500px) {
+  .ClothesCategoriesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 25px;
+  }
+
+  .ClothesCategoriesContentContainer * {
+    margin: 0 auto;
+  }
+}

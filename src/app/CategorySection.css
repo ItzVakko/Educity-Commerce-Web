@@ -48,3 +48,25 @@
   font-size: 24px;
   font-family: "NinoMtavruli", sans-serif;
 }
+
+@media screen and (max-width: 900px) {
+  .section1Container {
+    margin: 40px 22px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .section1Container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .section1ContainerItem {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .section1Container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

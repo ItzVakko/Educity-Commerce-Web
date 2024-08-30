@@ -18,8 +18,7 @@ const HeaderBanner = () => {
     <div className="HeaderBanner">
       <div className="HeaderBannerInfoWrapper">
         <h1>
-          ერთად
-          <br />
+          ერთად <br />
           გამოვიკვლიოთ უნიკალური პროდუქცია.
         </h1>
         <p>იცხოვრე გავლენიანი და ინოვაციური მოდისთვის!</p>

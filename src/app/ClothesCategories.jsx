@@ -35,7 +35,7 @@ const ClothesCategories = ({ category, categoryGeorgian }) => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="ClothesCategoriesContainer">
+    <section className="ClothesCategoriesContainer">
       <h1 className="ClothesCategoriesHead">
         <Link
           href={{ pathname: "/clothes", query: { category: category } }}
@@ -49,7 +49,7 @@ const ClothesCategories = ({ category, categoryGeorgian }) => {
           <ClothesCard item={item} key={index} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
