@@ -10,7 +10,7 @@ const LoginForm = () => {
     <form className="login-form">
       <h1>ავტორიზაცია</h1>
 
-      <label htmlFor="username-login">სახელი</label>
+      <label htmlFor="username-login">მომხმარებლის სახელი</label>
       <input type="text" id="username-login" name="username-login" />
 
       <label htmlFor="password-login">პაროლი</label>

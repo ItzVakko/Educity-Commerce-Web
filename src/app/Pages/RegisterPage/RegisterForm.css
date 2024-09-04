@@ -1,0 +1,101 @@
+.register-form {
+  max-width: 444px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 72px;
+}
+
+.register-form h1 {
+  font-family: "NinoMtavruli", sans-serif;
+  font-size: 36px;
+  margin-bottom: 13px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.register-form label {
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 6px;
+  font-weight: 300 !important;
+}
+
+#username-register,
+#mail-register,
+#password-register,
+#repeat-password-register {
+  height: 37px;
+  outline: none;
+  border-radius: 10px;
+  border: 0.5px solid #000000;
+  padding: 0 15px;
+  padding-top: 2px;
+  font-size: 16px;
+  color: #232323;
+}
+
+.register-social-networks {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.register-social-networks button {
+  width: 110px;
+  height: 35px;
+  border-radius: 50px;
+  background-color: transparent;
+  border: 0;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-social-networks button svg {
+  width: 26px;
+  height: 26px;
+}
+
+.register-button {
+  cursor: pointer;
+  width: 250px;
+  height: 40px;
+  padding: 0 20px;
+  background-color: #ebd96b;
+  border: 0.5px solid #ebd96b;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  transition: 1s;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.register-button:hover {
+  color: rgb(87, 86, 86);
+}
+
+@media screen and (max-width: 600px) {
+  .register-form {
+    max-width: 314px;
+    padding: 0 15px;
+  }
+
+  #username-register,
+  #mail-register,
+  #password-register,
+  #repeat-password-register {
+    height: 35px;
+    font-size: 12px;
+  }
+
+  .register-button {
+    padding: 0 15px;
+    font-size: 16px;
+  }
+}

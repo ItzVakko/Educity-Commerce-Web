@@ -1,10 +1,3 @@
-label {
-  font-size: 20px;
-  margin-top: 11px;
-  margin-bottom: 6px;
-  font-weight: 300 !important;
-}
-
 .login-form {
   max-width: 414px;
   display: flex;
@@ -21,6 +14,13 @@ label {
   font-weight: bold;
 }
 
+.login-form label {
+  font-size: 20px;
+  margin-top: 11px;
+  margin-bottom: 6px;
+  font-weight: 300 !important;
+}
+
 #username-login,
 #password-login {
   height: 47px;
@@ -28,6 +28,7 @@ label {
   border-radius: 10px;
   border: 0.5px solid #000000;
   padding: 0 15px;
+  padding-top: 2px;
   font-size: 16px;
   color: #232323;
 }

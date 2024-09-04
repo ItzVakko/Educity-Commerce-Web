@@ -23,6 +23,10 @@ const nextConfig = {
         destination: "/Pages/LoginPage",
       },
       {
+        source: "/register",
+        destination: "/Pages/RegisterPage",
+      },
+      {
         source: "/product/:id",
         destination: "/Pages/ClothesDetailsPage/[id]",
       },
