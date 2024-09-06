@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import cartReducer from "./Reducers/cartReducer";
+import authReducer from "./Reducers/authReducer";
 
 const persistConfig = {
   key: "root",
@@ -15,6 +16,7 @@ const persistedReducer = persistReducer(persistConfig, cartReducer);
 export const store = configureStore({
   reducer: {
     cart: persistedReducer,
+    auth: authReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

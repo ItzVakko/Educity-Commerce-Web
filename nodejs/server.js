@@ -1,8 +1,11 @@
 const express = require("express");
 const next = require("next");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+const authRoutes = require("./AuthSystem/auth");
 const Clothes = require("./clothes");
+
+dotenv.config();
 
 const port = 3000;
 const dev = process.env.NODE_ENV !== "production";
@@ -14,9 +17,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
+  .then(() => console.log("Connected to MongoDB"))
   .catch((err) => {
     console.error("Failed to connect to MongoDB", err);
     process.exit(1);
@@ -25,7 +26,10 @@ mongoose
 app.prepare().then(() => {
   const server = express();
 
-  server.use(bodyParser.json());
+  server.use(express.json());
+  server.use(express.urlencoded({ extended: true }));
+
+  server.use("/api/auth", authRoutes);
 
   server.get("/api/clothes", async (req, res) => {
     try {
@@ -81,12 +85,13 @@ app.prepare().then(() => {
     }
   });
 
-  server.all("*", (req, res) => {
-    return handle(req, res);
-  });
+  server.all("*", (req, res) => handle(req, res));
 
   server.listen(port, (err) => {
-    if (err) throw err;
+    if (err) {
+      console.error("Server error:", err);
+      throw err;
+    }
     console.log(`Listening on port ${port}`);
   });
 });
