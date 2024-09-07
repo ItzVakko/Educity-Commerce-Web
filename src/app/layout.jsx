@@ -4,12 +4,12 @@ import Providers from "./reduxProviders";
 import "./App.css";
 import "./Fonts.css";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata = {
   title: "Commercial Website",
   description: "Created by educity students",
 };
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (

@@ -1,21 +1,34 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FacebookIcon from "../../Assets/Images/SVGIcons/FacebookIcon.svg";
 import InstagramIcon from "../../Assets/Images/SVGIcons/InstagramIcon.svg";
 import GoogleIcon from "../../Assets/Images/SVGIcons/GoogleIcon.svg";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "@/app/Store/Reducers/authReducer";
+import { loginUser, setAuthenticated } from "@/app/Store/Reducers/authReducer";
 
 import "./LoginForm.css";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
-  const dispatch = useDispatch();
+
   const status = useSelector((state) => state.auth.status);
   const error = useSelector((state) => state.auth.error);
+  const success = useSelector((state) => state.auth.success);
+
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("authToken");
+      if (token) {
+        dispatch(setAuthenticated(true));
+        router.push("/");
+      }
+    }
+  }, [dispatch, router]);
 
   const handleRegisterClick = (e) => {
     e.preventDefault();
@@ -29,9 +42,14 @@ const LoginForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser(formData));
+    const resultAction = await dispatch(loginUser(formData));
+    if (loginUser.fulfilled.match(resultAction)) {
+      setFormData({ username: "", password: "" });
+      dispatch(setAuthenticated(true));
+      router.push("/");
+    }
   };
 
   return (
@@ -83,6 +101,7 @@ const LoginForm = () => {
       </div>
 
       {status === "failed" && <p className="error-message">{error}</p>}
+      {status === "succeeded" && <p className="error-message">{success}</p>}
     </form>
   );
 };

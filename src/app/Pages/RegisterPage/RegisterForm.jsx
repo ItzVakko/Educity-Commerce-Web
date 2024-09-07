@@ -1,11 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FacebookIcon from "../../Assets/Images/SVGIcons/FacebookIcon.svg";
 import InstagramIcon from "../../Assets/Images/SVGIcons/InstagramIcon.svg";
 import GoogleIcon from "../../Assets/Images/SVGIcons/GoogleIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "@/app/Store/Reducers/authReducer";
+import {
+  registerUser,
+  setAuthenticated,
+} from "@/app/Store/Reducers/authReducer";
+import { useRouter } from "next/navigation";
 
 import "./RegisterForm.css";
 
@@ -18,8 +22,22 @@ const RegisterForm = () => {
   });
 
   const dispatch = useDispatch();
+  const router = useRouter();
+
   const status = useSelector((state) => state.auth.status);
   const error = useSelector((state) => state.auth.error);
+  const success = useSelector((state) => state.auth.success);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("authToken");
+
+      if (token) {
+        dispatch(setAuthenticated(true));
+        router.push("/");
+      }
+    }
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -39,7 +57,18 @@ const RegisterForm = () => {
         email: formData.email,
         password: formData.password,
       })
-    );
+    ).then((result) => {
+      if (result.meta.requestStatus === "fulfilled") {
+        setFormData({
+          username: "",
+          email: "",
+          password: "",
+          repeatPassword: "",
+        });
+
+        router.push("/login");
+      }
+    });
   };
 
   return (
@@ -103,6 +132,7 @@ const RegisterForm = () => {
       </button>
 
       {status === "failed" && <p className="error-message">{error}</p>}
+      {status === "succeeded" && <p className="error-message">{success}</p>}
     </form>
   );
 };

@@ -6,9 +6,9 @@ const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email, username });
     if (existingUser)
-      return res.status(400).json({ error: "User already exists!" });
+      return res.status(400).json({ error: "Account already created!" });
 
     const newUser = new User({
       username,
@@ -31,8 +31,6 @@ const login = async (req, res) => {
     if (!user) return res.status(400).json({ error: "User not found!" });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (isMatch)
-      return res.status(200).json({ message: "Logged in successfully!" });
 
     if (!isMatch)
       return res.status(400).json({ error: "Invalid credentials!" });

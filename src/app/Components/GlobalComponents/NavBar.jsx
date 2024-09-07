@@ -7,12 +7,15 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import Logo from "../../Assets/Images/NavBar/Logo.png";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import LogoutIcon from "@mui/icons-material/Logout";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import CartMenu from "./CartMenu";
 import { useRouter, useSearchParams } from "next/navigation";
 import BurgerMenuResponsive from "./BurgerMenuResponsive";
+import { logout } from "@/app/Store/Reducers/authReducer";
+
 import "./NavBar.css";
 
 const NavBar = () => {
@@ -24,7 +27,9 @@ const NavBar = () => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
+  const dispatch = useDispatch();
 
+  const { username, isAuthenticated } = useSelector((state) => state.auth);
   const itemNumber = useSelector((state) =>
     state.cart.items.reduce((total, item) => total + item.qty, 0)
   );
@@ -146,12 +151,26 @@ const NavBar = () => {
             </div>
           </div>
           <div className="HeaderLeftContainer">
-            <Link href="/login">
-              <PersonOutlineRoundedIcon />
-              <h4 style={{ display: hidden ? "block" : "none" }}>
-                ავტორიზაცია
-              </h4>
-            </Link>
+            {isAuthenticated ? (
+              <div
+                onClick={() => {
+                  dispatch(logout());
+                  router.push("/login");
+                }}
+              >
+                <LogoutIcon />
+                <h4 style={{ display: hidden ? "block" : "none" }}>
+                  {username}
+                </h4>
+              </div>
+            ) : (
+              <Link href="/login">
+                <PersonOutlineRoundedIcon />
+                <h4 style={{ display: hidden ? "block" : "none" }}>
+                  ავტორიზაცია
+                </h4>
+              </Link>
+            )}
             <div onClick={() => setIsCartOpen(true)}>
               {itemNumber > 0 ? (
                 <span className="cart-items-number">{itemNumber}</span>
